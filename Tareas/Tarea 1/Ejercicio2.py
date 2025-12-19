@@ -113,5 +113,5 @@ def Ejercicio_f():
     print("La clase de distribución de probabilidad usada es la binomial (n=3, p=0.5), esto debido a que")
     
 
-if __name__ == "__main__":
-    menu()
+
+menu()

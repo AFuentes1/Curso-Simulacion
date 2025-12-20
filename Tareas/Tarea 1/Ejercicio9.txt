@@ -1,0 +1,92 @@
+#Ejercicio 9
+import random
+def pausa():
+    input("Presione Enter para continuar")
+
+def menu():
+    while True: 
+        print("Ejercicio 9: Comunicacion Tokio -> Florida")
+        print("1) Probabilidad total actual")
+        print("2) Mejorando S2, Florida a 0.8")
+        print("3) S1, S2 con 0.8")
+        print("4) Salir")
+
+        op = input("Opcion ").strip()
+
+        if op == "1": 
+            ejercicio_a()
+            pausa()
+        elif op == "2":
+            ejercicio_b()
+            pausa()
+        elif op == "3":
+            ejercicio_c()
+            pausa()
+        elif op == "4":
+            break
+        else:
+            print("Opcion no valida, intente de nuevo.")
+            pausa()
+    
+def ejercicio_a():
+    p1 = 0.9 * 0.8 #Tokio -> S1 -> Florida
+    p2 = 0.6 * 0.7 #Tokio -> S2 -> Florida
+
+    p_total = 1 - (1 - p1) * (1 - p2) #Probabilidad de que al menos una funcione 4
+    print("La probabilidad total de comunicacion de Tokio a Florida es: ", p_total)
+
+def ejercicio_b():
+    p1 = 0.9 * 0.8 #Tokio -> S1 -> Florida
+    p2 = 0.6 * 0.8 #Tokio -> S2 -> Florida Mejorado a 0.8
+
+    p_total = 1 - (1 - p1) * (1 - p2) #Probabilidad de que al menos una funcione
+
+    print("La probabilidad total de comunicacion de Tokio a Florida es: ", p_total)
+
+def ejercicio_c():
+    n = int(input("Ingrese el numero de simulaciones a realizar: ").strip())
+
+    # probabilidades
+    p_TS1, p_TS2  = 0.90, 0.90  # Tokio -> S1 y Tokio -> S2
+    p_S1F, p_S2F  = 0.80, 0.70  # S1 -> Florida y S2 -> Florida
+    p_S1S2, p_S2S1 = 0.80, 0.80 # S1 <-> S2 (comunicación bidireccional)
+
+    exitos = 0
+
+    # Ejecutar n simulaciones independientes
+    for _ in range(n):
+        # Determinar si cada enlace funciona en esta simulación (True/False)
+        TS1  = random.random() < p_TS1 # ¿Funciona Tokio -> S1?
+        TS2  = random.random() < p_TS2  # ¿Funciona Tokio -> S2?
+        S1F  = random.random() < p_S1F  # ¿Funciona S1 -> Florida?
+        S2F  = random.random() < p_S2F  # ¿Funciona S2 -> Florida?
+        S1S2 = random.random() < p_S1S2 # ¿Funciona S1 -> S2?
+        S2S1 = random.random() < p_S2S1 # ¿Funciona S2 -> S1?
+
+        # Marcar qué satélites son alcanzables directamente desde Tokio
+        reach_S1 = TS1 # S1 es alcanzable si Tokio->S1 funciona
+        reach_S2 = TS2 # S2 es alcanzable si Tokio->S2 funciona
+
+        cambios = True 
+        
+        #Repetir mientras haya cambios en los satélites alcanzables 
+        while cambios: 
+            cambios = False #no hay cambios inicialmente
+
+            # Verificar si se puede alcanzar S2 a través de S1
+            if reach_S1 and S1S2 and not reach_S2:
+                reach_S2 = True 
+                cambios = True
+
+            # Verificar si se puede alcanzar S1 a través de S2
+            if reach_S2 and S2S1 and not reach_S1:
+                reach_S1 = True
+                cambios = True
+
+        if (reach_S1 and S1F) or (reach_S2 and S2F):
+            exitos += 1
+
+    p = exitos / n
+    print("La probabilidad simulada de comunicacion de Tokio a Florida es:", p)
+
+menu()

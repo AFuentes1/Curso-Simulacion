@@ -1,0 +1,23 @@
+' EJERCICIO 3: Binomial(n=3, p=0.50) + Histograma
+
+ENUM success failure
+COPY 10000 numberOfTrials
+
+REPEAT numberOfTrials
+  CLEAR sample
+
+  REPEAT 3
+    UNIFORM 1 0 1 u
+    IF u <= 0.5
+      SCORE success sample
+    ELSE
+      SCORE failure sample
+    END
+  END
+
+  COUNT sample = success successCount
+  SCORE successCount NumberOfSuccessesses
+END
+
+HISTOGRAM binsize 1 percent NumberOfSuccessesses
+

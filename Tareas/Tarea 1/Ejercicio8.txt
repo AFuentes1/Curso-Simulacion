@@ -1,0 +1,67 @@
+#Ejercicio 8 
+import random
+
+def pausa ():
+    input("Presione Enter para continuar")
+
+def Ejercicio8():
+    while True: 
+        print("Ejercicio 8: Apuestas")
+        print("1) Estrategia 1, (x,x)")
+        print("2) Estrategia 2, (x,2x)")
+        print("3) Salir")
+
+        op = input("Opcion ").strip()
+
+        if op == "1":
+            Ejercicio_a()
+            pausa()
+        
+        elif op == "2":
+            pausa()
+
+        elif op == "3":
+            break
+        else:
+            print("Opcion no valida, intente de nuevo.")
+            pausa()
+
+def Ejercicio_a():
+    n = int(input("Ingrese el numero de simulaciones a realizar: ").strip())
+    exitos = 0
+    p_ganar = 0.48
+    x = 10 
+
+    for _ in range(n):
+        dinero = 100
+        while 0 < dinero < 200: 
+            apuesta = x #Se define la cantidad a apostar x = 10
+            if x <= dinero: #Verifica que hay dinero suficiente 
+                if random.random() < p_ganar: #numero aleatorio, si es menor a 0.48 gana
+                    dinero += apuesta #Suma la apuesta al dinero
+                else:
+                    dinero -= apuesta #Resta la apuesta al dinero
+        if dinero >= 200: #Si el dinero es mayor o igual a 200, se considera exito
+            exitos += 1
+
+def Ejercicio_b():
+    n = int(input("Ingrese el numero de simulaciones a realizar: ").strip())
+    exitos = 0
+    p_ganar = 0.48
+    x = 10 
+
+    for _ in range(n):
+        dinero = 100
+        while 0 < dinero < 200: 
+            apuesta = min(2 * x, dinero) #Se define la cantidad a apostar como el doble de x o el dinero disponible
+            if random.random() < p_ganar: #numero aleatorio, si es menor a 0.48 gana
+                dinero += apuesta #Suma la apuesta al dinero
+            else:
+                dinero -= apuesta #Resta la apuesta al dinero
+        if dinero >= 200: #Si el dinero es mayor o igual a 200, se considera exito
+            exitos += 1
+
+    p = exitos / n
+    print("La probabilidad simulada de alcanzar los $200 con la estrategia (x,2x) es:", p)
+    
+    

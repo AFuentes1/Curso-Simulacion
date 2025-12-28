@@ -108,6 +108,11 @@ def Ejercicio_c():
     print("  - Dígitos 0, 1, 2, 3, 4, 5 → se convierten en 1, 2, 3, 4, 5, 6")
     print("  - Dígitos 6-9 → se descartan y se genera otro")
 
+def generardor99():
+    d1 = random.randint(0, 9)  # Genera el primer dígito (0-9)
+    d2 = random.randint(0, 9)  # Genera el segundo dígito (0-9)
+    return d1 * 10 + d2  # Combina los dígitos para formar un número entre 0 y 99
+
 def ejercicio_10d():
     print("=" * 60)
     print("Ejercicio 10d - Asignaciones con generador [0-99]")
@@ -115,17 +120,17 @@ def ejercicio_10d():
     print()
 
     print("a) Moneda legal:") 
-    numero_a = random.randint(0, 99) #Genera un numero aleatorio entre 0 y 99
+    numero_a = generardor99()  # Genera un número entre 0 y 99
     if numero_a <= 49: #si el numero es entre 0 y 49
         resultado_a = "Corona" #asigna Corona
     else:
-        resultado_a = "Escudo" #si es entre 50 y 99 asigna Escudo
+        numero_a = "Escudo" #si es entre 50 y 99 asigna Escudo
     print(f"   Número: {numero_a} → {resultado_a}")
     print("   Regla: 0-49 = Corona (50%), 50-99 = Escudo (50%)")
     print()
 
     print("b) Tres eventos (a, b, c):")
-    numero_b = random.randint(0, 99) #Genera un numero aleatorio entre 0 y 99
+    numero_b = generardor99()  # Genera un número entre 0 y 99
     if numero_b <= 9: #si el numero es entre 0 y 9 asigan a 
         resultado_b = "a" 
     elif numero_b <= 49: #si el numero es entre 10 y 49 asigna b
@@ -137,8 +142,8 @@ def ejercicio_10d():
     print()
 
     print("c) Dado (1-6):")
-    numero_c = random.randint(0, 99) #Genera un numero aleatorio entre 0 y 99
-    resultado_c = (numero_c % 6) + 1 #Aplica la regla del dado
+    numero_c = generardor99()  # Genera un número entre 0 y 99
+    resultado_c = (numero_c % 6) + 1  # Convierte el número a un valor de dado
     print(f"   Número: {numero_c} → dado = {resultado_c}") 
     print("   Regla: (número mod 6) + 1")
     print("   Alternativa: descartar si número > 5 y tomar número + 1")

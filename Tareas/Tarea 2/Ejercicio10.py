@@ -145,5 +145,12 @@ def ejercicio_10d():
 
     print("Poliedros regulares (caras): 4, 6, 8, 12, 20. Sí se pueden simular con descarte o rangos.")
 
+    print("""def tirar(caras):
+    resultado = tirard100()
+    tope = 100 // caras
+    if resultado < tope:
+        return (resultado % caras)
+    else:
+        return tirar(caras)""")
 
 menu()

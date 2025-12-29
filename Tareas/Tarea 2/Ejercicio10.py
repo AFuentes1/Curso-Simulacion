@@ -116,32 +116,34 @@ def ejercicio_10d():
     print()
 
     print("a) Moneda legal:")
-    numero_a = random.randint(0, 99) #genera un numero aleatorio entre 0 y 99
-    if numero_a <= 49: #si el numero es entre 0 y 49
-        resultado_a = "Corona" #asigna Corona
-    else:
-        resultado_a = "Escudo" #si es entre 50 y 99 asigna Escudo
+    numero_a = random.randint(0, 99)
+    resultado_a = "Corona" if numero_a <= 49 else "Escudo"
     print(f"   Número: {numero_a} → {resultado_a}")
     print("   Regla: 0-49 = Corona (50%), 50-99 = Escudo (50%)")
     print()
 
     print("b) Tres eventos (a, b, c):")
-    numero_b = random.randint(0, 99) #genera un numero aleatorio entre 0 y 99
-    if numero_b <= 9: #si el numero es entre 0 y 9
-        resultado_b = "a" #asigna a 
-    elif numero_b <= 49: #si el numero es entre 10 y 49
-        resultado_b = "b" #asigna b
+    numero_b = random.randint(0, 99)
+    if numero_b <= 9:
+        resultado_b = "a"
+    elif numero_b <= 49:
+        resultado_b = "b"
     else:
-        resultado_b = "c" #si es entre 50 y 99 asigna c
-    print(f"   Número: {numero_b} → evento {resultado_b}") 
+        resultado_b = "c"
+    print(f"   Número: {numero_b} → evento {resultado_b}")
     print("   Regla: 0-9=a (10%), 10-49=b (40%), 50-99=c (50%)")
     print()
 
     print("c) Dado (1-6):")
-    numero_c = random.randint(0, 99) #genera un numero aleatorio entre 0 y 99
-    resultado_c = (numero_c % 6) + 1 #aplica la regla para obtener un resultado entre 1 y 6 
+    numero_c = random.randint(0, 99)
+    while numero_c > 95:
+        numero_c = random.randint(0, 99)
+    resultado_c = (numero_c % 6) + 1
     print(f"   Número: {numero_c} → dado = {resultado_c}")
-    print("   Regla: (número mod 6) + 1")
+    print("   Regla: descartar 96-99 y usar (número mod 6) + 1")
+    print()
+
+    print("Poliedros regulares (caras): 4, 6, 8, 12, 20. Sí se pueden simular con descarte o rangos.")
 
 
 menu()

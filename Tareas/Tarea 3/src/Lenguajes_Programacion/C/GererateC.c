@@ -22,8 +22,8 @@ int main(void) {
 
     srand(time(NULL));
 
-    f1 = fopen("c_u01.txt", "w");
-    f2 = fopen("c_u02.txt", "w");
+    f1 = fopen("c_u1_4.txt", "w");
+    f2 = fopen("c_u1_8.txt", "w");
 
     if (!f1 || !f2) {
         printf("Error abriendo archivos\n");

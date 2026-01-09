@@ -14,6 +14,6 @@ if __name__ == "__main__":
         for i in generar_numeros_rango0_1(n):
             archivo.write(f"{i}\n")
 
-    with open("python_u02.txt", "w") as archivo:
-        for i in generar_numeros_rango0_1(n):
+    with open("python_u1_6.txt", "w") as archivo:
+        for i in generar_numeros_int(n, 1, 6):
             archivo.write(f"{i}\n")

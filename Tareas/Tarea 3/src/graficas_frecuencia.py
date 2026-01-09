@@ -31,13 +31,14 @@ def plot_discrete(file):
 
 if __name__ == "__main__":
     # Continuos [0,1)
-    for name in ["java_u01.txt","julia_u01.txt","python_u01.txt","python_u02.txt"]:
+    # Discretos
+    for name in ["c_u1_4.txt", "c_u1_8.txt", "racket_1_20.txt", "python_u1_6.txt"]:
         f = DATA / name
         if f.exists():
-            plot_continuous(f, bins=50)
+            plot_discrete(f)
 
     # Discretos
-    for name in ["c_u01.txt","c_u02.txt","racket_1_20.txt"]:
+    for name in ["c_u01.txt","racket_1_20.txt","python_u1_6.txt"]:
         f = DATA / name
         if f.exists():
             plot_discrete(f)

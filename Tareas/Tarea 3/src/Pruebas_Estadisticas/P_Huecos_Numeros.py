@@ -83,6 +83,6 @@ def prueba_huecos_numeros(path, a=0, b=1, u0=0.0, u1=0.5, alpha=0.05, kmax=5):
 # --- Ejecutar con el botón ▶ ---
 data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
 
-pasa, info = prueba_huecos_numeros(str(data_path), a=0, b=1, u0=0.0, u1=0.5, alpha=0.05, kmax=5)
+pasa, info = prueba_huecos_numeros(data_path, a=0, b=1, u0=0.0, u1=0.5, alpha=0.05, kmax=5)
 print("HUECOS (NÚMEROS) PASA:", pasa)
 print(info)

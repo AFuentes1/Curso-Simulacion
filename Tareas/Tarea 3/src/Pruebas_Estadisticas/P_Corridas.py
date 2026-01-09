@@ -12,10 +12,10 @@ def contar_corridas(bits):
             r += 1
     return r
 
-def prueba_corridas(path, alpha=0.05, threshold=0.5):
+def prueba_corridas(path, alpha=0.05):
     x = np.loadtxt(path)
     n = x.size
-
+    threshold = len(set(x)) / 2  # mediana aproximada
     # 1 si está arriba/igual al umbral, 0 si está abajo
     bits = (x >= threshold).astype(int)
 
@@ -55,9 +55,10 @@ def prueba_corridas(path, alpha=0.05, threshold=0.5):
         "zona_aceptacion_z": [float(-zcrit), float(zcrit)]
     }
 
-# Ruta robusta (si tu .py está en .../Tarea 3/src/ y data en .../Tarea 3/data/)
-data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
+if __name__ == "__main__":
+    # Ruta robusta (si tu .py está en .../Tarea 3/src/ y data en .../Tarea 3/data/)
+    data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
 
-pasa, info = prueba_corridas(str(data_path), alpha=0.05, threshold=0.5)
-print("CORRIDAS PASA:", pasa)
-print(info)
+    pasa, info = prueba_corridas(data_path, alpha=0.05)
+    print("CORRIDAS PASA:", pasa)
+    print(info)

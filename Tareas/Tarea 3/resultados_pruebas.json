@@ -1,0 +1,10 @@
+[
+  {
+    "dataset": "c_u1_4.txt",
+    "tipo": "discrete",
+    "parametros": {
+      "a": 1,
+      "b": 4
+    },
+    "prueba": "corridas",
+    "pasa": 

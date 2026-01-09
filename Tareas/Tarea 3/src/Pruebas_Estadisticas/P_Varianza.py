@@ -65,6 +65,6 @@ def prueba_varianza(path, kind="continuous", a=0, b=1, alpha=0.05):
 # --- RUTA ROBUSTA (sin main) ---
 data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
 
-pasa_var, info_var = prueba_varianza(str(data_path), kind="continuous", a=0, b=1, alpha=0.05)
+pasa_var, info_var = prueba_varianza(data_path, kind="continuous", a=0, b=1, alpha=0.05)
 print("\nVARIANZA PASA:", pasa_var)
 print(info_var)

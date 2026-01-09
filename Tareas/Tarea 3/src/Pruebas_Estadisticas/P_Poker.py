@@ -88,6 +88,6 @@ def prueba_poker(path, a=0, b=1, alpha=0.05, d=5):
 # --- Ejecutar con el botón ▶ ---
 data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
 
-pasa, info = prueba_poker(str(data_path), a=0, b=1, alpha=0.05, d=5)
+pasa, info = prueba_poker(data_path, a=0, b=1, alpha=0.05, d=5)
 print("POKER PASA:", pasa)
 print(info)

@@ -38,6 +38,6 @@ def prueba_promedio(path, kind="continuous", a=0, b=1, alpha=0.05):
 
 data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
 
-pasa, info = prueba_promedio(str(data_path), kind="continuous", a=0, b=1, alpha=0.05)
+pasa, info = prueba_promedio(data_path, kind="continuous", a=0, b=1, alpha=0.05)
 print("PROMEDIO PASA:", pasa)
 print(info)

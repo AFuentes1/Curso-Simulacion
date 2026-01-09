@@ -64,6 +64,6 @@ def prueba_series(path, a=0, b=1, k=10, alpha=0.05):
 # --- Ejecutar con el botón ▶ ---
 data_path = Path(__file__).resolve().parents[2] / "Data" / "python_u01.txt"
 
-pasa, info = prueba_series(str(data_path), a=0, b=1, k=10, alpha=0.05)
+pasa, info = prueba_series(data_path, a=0, b=1, k=10, alpha=0.05)
 print("SERIES PASA:", pasa)
 print(info)

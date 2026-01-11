@@ -1,0 +1,911 @@
+\documentclass{beamer}
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+\usetheme{Madrid}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, booktabs, graphicx}
+\graphicspath{{../results/}}
+\setlength{\emergencystretch}{3em}
+\title{Tarea III: Evaluación de Aleatoriedad Uniforme}
+\author{Anthony Fuentes y Carlos Murcia}
+\institute{Curso de Simulación}
+
+\begin{document}
+
+% 1) Portada
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% 2) Agenda
+\begin{frame}[shrink=5]{Contenido}
+\begin{itemize}
+  \item Pruebas Estadísticas 
+  \item Datos teóricos (fórmulas) de cada muestra
+  \item Resultados por lenguaje/muestra 
+  \item Gráficos
+  \item Conclusiones
+\end{itemize}
+\end{frame}
+
+
+% ---------- DIAPOSITIVA: INTRODUCCIÓN ----------
+\begin{frame}[shrink=10]{Introducción}
+\begin{itemize}
+  \item \textbf{Objetivo:} evaluar si las secuencias generadas se comportan como una \textbf{distribución uniforme} esperada.
+  \item \textbf{Contexto:} un generador pseudoaleatorio debe producir valores \textit{sin patrones evidentes} y con frecuencias consistentes con la teoría.
+  \item \textbf{Método:} aplicamos \textbf{pruebas estadísticas} para comparar resultados \textbf{observados vs. teóricos} en cada muestra.
+  \item \textbf{Criterio:} nivel de significancia $\alpha=0.05$; si el estadístico cae en la \textbf{región de aceptación}, \textbf{no se rechaza} $H_0$.
+  \item \textbf{Resultados:} se muestran \textbf{tablas y gráficos} y un resumen \textbf{PASA/FALLA} por lenguaje y prueba.
+\end{itemize}
+\end{frame}
+
+
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+% --- diapositiva ---
+\begin{frame}{Prueba de la Media (Z) — Muestra uniforme $[0,1)$ generada en Java}
+\begin{columns}[T,onlytextwidth]
+
+\column{0.36\textwidth}\footnotesize
+\begin{block}{Resumen}
+$\alpha=0.05$\\
+$n=1{,}000{,}000$\\
+$\mu=0.5$\\
+$\bar{x}=0.500236$\\
+$Z_0=0.8163$\\
+$z_{\alpha/2}=\pm 1.96$\\[2pt]
+\textbf{Decisión: No se rechaza $H_0$}
+\end{block}
+
+\column{0.64\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Promedio/java_u01_promedio.png}
+
+\end{columns}
+\end{frame}
+
+%------------------ MEDIA (Z) — ERLANG [0,1) ------------------
+\begin{frame}{Prueba de la Media (Z) — Erlang uniforme $[0,1)$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 0.5$ \\
+    $\bar{x} = 0.499970$ \\
+    $Z_0 = -0.1051$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/erlang_u01_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+%------------------ MEDIA (Z) — PYTHON [0,1) ------------------
+\begin{frame}{Prueba de la Media (Z) — Python uniforme $[0,1)$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 0.5$ \\
+    $\bar{x} = 0.500410$ \\
+    $Z_0 = 1.4206$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/python_u01_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+%------------------ MEDIA (Z) — PYTHON [1,6] ------------------
+\begin{frame}{Prueba de la Media (Z) — Python dados $[1,6]$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 3.5$ \\
+    $\bar{x} = 3.500224$ \\
+    $Z_0 = 0.1312$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/python_u1_6_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+%------------------ MEDIA (Z) — C [1,4] ------------------
+\begin{frame}{Prueba de la Media (Z) — C uniforme discreta $[1,4]$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 2.5$ \\
+    $\bar{x} = 2.502102$ \\
+    $Z_0 = 0.9631$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/c_u1_4_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+%------------------ MEDIA (Z) — C [1,8] ------------------
+\begin{frame}{Prueba de la Media (Z) — C uniforme discreta $[1,8]$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 4.5$ \\
+    $\bar{x} = 4.501682$ \\
+    $Z_0 = 0.3436$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/c_u1_8_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+%------------------ MEDIA (Z) — RACKET [1,20] ------------------
+\begin{frame}{Prueba de la Media (Z) — Racket uniforme discreta $[1,20]$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 10.5$ \\
+    $\bar{x} = 10.499904$ \\
+    $Z_0 = -0.0334$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/racket_u1_20_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+%------------------ MEDIA (Z) — JULIA [0,1) ------------------
+\begin{frame}{Prueba de la Media (Z) — Julia uniforme $[0,1)$}
+\begin{columns}[T]
+  \begin{column}{0.36\textwidth}
+    \begin{block}{Resumen}
+    \small
+    $\alpha = 0.05$ \\
+    $n = 1{,}000{,}000$ \\
+    $\mu = 0.5$ \\
+    $\bar{x} = 0.499981$ \\
+    $Z_0 = -0.0658$ \\
+    $z_{\alpha/2} = \pm 1.96$ \\
+    \textbf{Decisión:} No se rechaza $H_0$
+    \end{block}
+  \end{column}
+  \begin{column}{0.64\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Promedio/julia_u01_promedio.png}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+% -------- Varianza (chi^2) — JAVA [0,1) --------
+\begin{frame}{Varianza ($\chi^2$) --- Java uniforme $[0,1)$}
+\begin{columns}[T]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+$\alpha=0{,}05$\\
+$n=1\,000\,000$,\; $df=999\,999$\\[2mm]
+$\sigma_0^2=\frac{1}{12}=0{,}08333333$\\
+$s^2=0{,}08344870$\\[2mm]
+$\chi_0^2=1\,001\,383{,}3798$\\
+$\chi^2_{0.025,df}=997\,229{,}0885$\\
+$\chi^2_{0.975,df}=1\,002\,772{,}7001$\\[2mm]
+\textbf{Decisión:} No se rechaza $H_0$
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/java_u01_varianza.png}
+\end{columns}
+\end{frame}
+
+% -------- Varianza (chi^2) — ERLANG [0,1) --------
+\begin{frame}{Varianza ($\chi^2$) --- Erlang uniforme $[0,1)$}
+\begin{columns}[T]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+$\alpha=0{,}05$\\
+$n=1\,000\,000$,\; $df=999\,999$\\[2mm]
+$\sigma_0^2=\frac{1}{12}=0{,}08333333$\\
+$s^2=0{,}08347610$\\[2mm]
+$\chi_0^2=1\,001\,712{,}1948$\\
+$\chi^2_{0.025,df}=997\,229{,}0885$\\
+$\chi^2_{0.975,df}=1\,002\,772{,}7001$\\[2mm]
+\textbf{Decisión:} No se rechaza $H_0$
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/erlang_u01_varianza.png}
+\end{columns}
+\end{frame}
+
+% -------- Varianza (chi^2) — PYTHON [0,1) --------
+\begin{frame}{Varianza ($\chi^2$) --- Python uniforme $[0,1)$}
+\begin{columns}[T]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+$\alpha=0{,}05$\\
+$n=1\,000\,000$,\; $df=999\,999$\\[2mm]
+$\sigma_0^2=\frac{1}{12}=0{,}08333333$\\
+$s^2=0{,}08328589$\\[2mm]
+$\chi_0^2=999\,429{,}7301$\\
+$\chi^2_{0.025,df}=997\,229{,}0885$\\
+$\chi^2_{0.975,df}=1\,002\,772{,}7001$\\[2mm]
+\textbf{Decisión:} No se rechaza $H_0$
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/python_u01_varianza.png}
+\end{columns}
+\end{frame}
+
+% -------- Varianza (chi^2) — PYTHON DADOS [1,6] --------
+\begin{frame}{Varianza ($\chi^2$) --- Python dados $[1,6]$}
+\begin{columns}[T]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+$\alpha=0{,}05$\\
+$n=1\,000\,000$,\; $df=999\,999$\\[2mm]
+$\sigma_0^2=\frac{6^2-1}{12}=2{,}91666667$\\
+$s^2=2{,}91639487$\\[2mm]
+$\chi_0^2=999\,905{,}8114$\\
+$\chi^2_{0.025,df}=997\,229{,}0885$\\
+$\chi^2_{0.975,df}=1\,002\,772{,}7001$\\[2mm]
+\textbf{Decisión:} No se rechaza $H_0$
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/python_u1_6_varianza.png}
+\end{columns}
+\end{frame}
+
+% ---------- VARIANZA (chi^2): C {1..4} ----------
+\begin{frame}{Prueba de Varianza ($\chi^2$) -- C discreta $\{1..4\}$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item $df=999{,}999$
+  \item $\sigma_0^2=1.25$
+  \item $s^2=1.248128$
+  \item $\chi_0^2=998{,}501.6581$
+  \item $\chi^2_{0.025,df}=997{,}229.0885$
+  \item $\chi^2_{0.975,df}=1{,}002{,}772.7001$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/c_u1_4_varianza.png}
+\end{columns}
+\end{frame}
+
+% ---------- VARIANZA (chi^2): C {1..8} ----------
+\begin{frame}{Prueba de Varianza ($\chi^2$) -- C discreta $\{1..8\}$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item $df=999{,}999$
+  \item $\sigma_0^2=5.25$
+  \item $s^2=5.247783$
+  \item $\chi_0^2=999{,}576.7131$
+  \item $\chi^2_{0.025,df}=997{,}229.0885$
+  \item $\chi^2_{0.975,df}=1{,}002{,}772.7001$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/c_u1_8_varianza.png}
+\end{columns}
+\end{frame}
+
+% -------- Varianza (chi^2) — RACKET [1,20] --------
+\begin{frame}{Varianza ($\chi^2$) --- Racket discreta $[1,20]$}
+\begin{columns}[T]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+$\alpha=0{,}05$\\
+$n=1\,000\,000$,\; $df=999\,999$\\[2mm]
+$\sigma_0^2=\frac{20^2-1}{12}=33{,}25$\\
+$s^2=33{,}24451694$\\[2mm]
+$\chi_0^2=999\,834{,}0962$\\
+$\chi^2_{0.025,df}=997\,229{,}0885$\\
+$\chi^2_{0.975,df}=1\,002\,772{,}7001$\\[2mm]
+\textbf{Decisión:} No se rechaza $H_0$
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/racket_u1_20_varianza.png}
+\end{columns}
+\end{frame}
+
+
+% -------- Varianza (chi^2) — JULIA [0,1) --------
+\begin{frame}{Varianza ($\chi^2$) --- Julia uniforme $[0,1)$}
+\begin{columns}[T]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+$\alpha=0{,}05$\\
+$n=1\,000\,000$,\; $df=999\,999$\\[2mm]
+$\sigma_0^2=\frac{1}{12}=0{,}08333333$\\
+$s^2=0{,}08325225$\\[2mm]
+$\chi_0^2=999\,025{,}9847$\\
+$\chi^2_{0.025,df}=997\,229{,}0885$\\
+$\chi^2_{0.975,df}=1\,002\,772{,}7001$\\[2mm]
+\textbf{Decisión:} No se rechaza $H_0$
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Varianza/julia_u01_varianza.png}
+\end{columns}
+\end{frame}
+
+
+% ---------- CORRIDAS: JAVA ----------
+\begin{frame}{Prueba de Corridas (Z) — Java uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $n=1{,}000{,}000$
+\item Umbral $=0.5$
+\item $z_0=1.2023$
+\item $z_{\alpha/2}=\pm 1.96$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/java_u01_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS: ERLANG ----------
+\begin{frame}{Prueba de Corridas (Z) — Erlang uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $n=1{,}000{,}000$
+\item Umbral $=0.5$
+\item $z_0=-0.6220$
+\item $z_{\alpha/2}=\pm 1.96$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/erlang_u01_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS: PYTHON [0,1) ----------
+\begin{frame}{Prueba de Corridas (Z) — Python uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $n=1{,}000{,}000$
+\item Umbral $=0.5$
+\item $z_0=-1.2375$
+\item $z_{\alpha/2}=\pm 1.96$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/python_u01_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS: PYTHON DADOS [1,6] ----------
+\begin{frame}{Prueba de Corridas (Z) — Python dados [1,6]}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $n=1{,}000{,}000$
+\item Umbral $=\mu$ (media teórica)
+\item $z_0=0.5020$
+\item $z_{\alpha/2}=\pm 1.96$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/python_u1_6_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS (Z): C {1..4} ----------
+\begin{frame}{Prueba de Corridas (Z) -- C discreta $\{1..4\}$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item Umbral $=\mu=2.5$
+  \item $z_0=0.6001$
+  \item $z_{\alpha/2}=\pm 1.96$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/c_u1_4_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS (Z): C {1..8} ----------
+\begin{frame}{Prueba de Corridas (Z) -- C discreta $\{1..8\}$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item Umbral $=\mu=4.5$
+  \item $z_0=-1.0579$
+  \item $z_{\alpha/2}=\pm 1.96$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/c_u1_8_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS: RACKET [1..20] ----------
+\begin{frame}{Prueba de Corridas (Z) — Racket discreta [1,20]}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $n=1{,}000{,}000$
+\item Umbral $=\mu$ (media teórica)
+\item $z_0=0.5620$
+\item $z_{\alpha/2}=\pm 1.96$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/racket_u1_20_corridas.png}
+\end{columns}
+\end{frame}
+
+% ---------- CORRIDAS: JULIA ----------
+\begin{frame}{Prueba de Corridas (Z) — Julia uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $n=1{,}000{,}000$
+\item Umbral $=0.5$
+\item $z_0=0.5620$
+\item $z_{\alpha/2}=\pm 1.96$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Corridas/julia_u01_corridas.png}
+\end{columns}
+\end{frame}
+
+
+% ---------- HUECOS CON DÍGITOS: JAVA ----------
+\begin{frame}{Prueba de Huecos con Dígitos ($\chi^2$) -- Java uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $\chi_0^2 = 6.2335$
+\item $\chi^2_{\text{crit}} = 12.5916$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Digitos/java_u01_huecos_digitos.png}
+\end{columns}
+\end{frame}
+
+% ---------- HUECOS CON DÍGITOS: ERLANG ----------
+\begin{frame}{Prueba de Huecos con Dígitos ($\chi^2$) -- Erlang uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $\chi_0^2 = 6.5533$
+\item $\chi^2_{\text{crit}} = 12.5916$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Digitos/erlang_u01_huecos_digitos.png}
+\end{columns}
+\end{frame}
+
+% ---------- HUECOS CON DÍGITOS: PYTHON ----------
+\begin{frame}{Prueba de Huecos con Dígitos ($\chi^2$) -- Python uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $\chi_0^2 = 10.3049$
+\item $\chi^2_{\text{crit}} = 12.5916$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Digitos/python_u01_huecos_digitos.png}
+\end{columns}
+\end{frame}
+
+% ---------- HUECOS CON DÍGITOS: JULIA ----------
+\begin{frame}{Prueba de Huecos con Dígitos ($\chi^2$) -- Julia uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+\item $\alpha=0.05$
+\item $\chi_0^2 = 3.9903$
+\item $\chi^2_{\text{crit}} = 12.5916$
+\item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Digitos/julia_u01_huecos_digitos.png}
+\end{columns}
+\end{frame}
+
+% ----------- HUECOS CON NÚMEROS: JAVA -----------
+\begin{frame}{Prueba de Huecos con Números ($\chi^2$) -- Java uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $\chi_0^2=4.6736$
+  \item $\chi^2_{\text{crit}}=11.0705$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Numeros/java_u01_huecos_numeros.png}
+\end{columns}
+\end{frame}
+
+% ----------- HUECOS CON NÚMEROS: ERLANG -----------
+\begin{frame}{Prueba de Huecos con Números ($\chi^2$) -- Erlang uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $\chi_0^2=4.9355$
+  \item $\chi^2_{\text{crit}}=11.0705$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Numeros/erlang_u01_huecos_numeros.png}
+\end{columns}
+\end{frame}
+
+% ----------- HUECOS CON NÚMEROS: PYTHON -----------
+\begin{frame}{Prueba de Huecos con Números ($\chi^2$) -- Python uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $\chi_0^2=5.4261$
+  \item $\chi^2_{\text{crit}}=11.0705$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Numeros/python_u01_huecos_numeros.png}
+\end{columns}
+\end{frame}
+
+% ----------- HUECOS CON NÚMEROS: JULIA -----------
+\begin{frame}{Prueba de Huecos con Números ($\chi^2$) -- Julia uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $\chi_0^2=0.4865$
+  \item $\chi^2_{\text{crit}}=11.0705$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Huecos_Numeros/julia_u01_huecos_numeros.png}
+\end{columns}
+\end{frame}
+
+
+% ---------- PÓKER: JAVA ----------
+\begin{frame}{Prueba de Póker ($\chi^2$) — Java uniforme $[0,1)$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0,05$
+  \item $n=1{,}000{,}000$
+  \item Dígitos por mano: $d=5$
+  \item Categorías: $7$ \;\;($df=6$)
+  \item $\chi^2_0=2,8128$
+  \item $\chi^2_{\text{crit}}=12,5916$
+  \item $p\text{-value}\approx 0,8319$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Poker/java_u01_poker.png}
+\end{columns}
+\end{frame}
+
+% ---------- PÓKER: ERLANG ----------
+\begin{frame}{Prueba de Póker ($\chi^2$) — Erlang uniforme $[0,1)$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0,05$
+  \item $n=1{,}000{,}000$
+  \item Dígitos por mano: $d=5$
+  \item Categorías: $7$ \;\;($df=6$)
+  \item $\chi^2_0=10,4762$
+  \item $\chi^2_{\text{crit}}=12,5916$
+  \item $p\text{-value}\approx 0,1060$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Poker/erlang_u01_poker.png}
+\end{columns}
+\end{frame}
+
+% ---------- PÓKER: PYTHON ----------
+\begin{frame}{Prueba de Póker ($\chi^2$) — Python uniforme $[0,1)$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0,05$
+  \item $n=1{,}000{,}000$
+  \item Dígitos por mano: $d=5$
+  \item Categorías: $7$ \;\;($df=6$)
+  \item $\chi^2_0=5,7329$
+  \item $\chi^2_{\text{crit}}=12,5916$
+  \item $p\text{-value}\approx 0,4538$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Poker/python_u01_poker.png}
+\end{columns}
+\end{frame}
+
+% ---------- PÓKER: JULIA ----------
+\begin{frame}{Prueba de Póker ($\chi^2$) — Julia uniforme $[0,1)$}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0,05$
+  \item $n=1{,}000{,}000$
+  \item Dígitos por mano: $d=5$
+  \item Categorías: $7$ \;\;($df=6$)
+  \item $\chi^2_0=6,4010$
+  \item $\chi^2_{\text{crit}}=12,5916$
+  \item $p\text{-value}\approx 0,3798$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Poker/julia_u01_poker.png}
+\end{columns}
+\end{frame}
+
+% ---------- SERIES: JAVA ----------
+\begin{frame}{Prueba de Series ($\chi^2$) -- Java uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item $k=10 \;\Rightarrow\; df=99$
+  \item $\chi_0^2=108.2416$
+  \item $\chi^2_{\text{crit}}\approx 122.1451$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Series/java_u01_series.png}
+\end{columns}
+\end{frame}
+
+% ---------- SERIES: ERLANG ----------
+\begin{frame}{Prueba de Series ($\chi^2$) -- Erlang uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item $k=10 \;\Rightarrow\; df=99$
+  \item $\chi_0^2=89.7226$
+  \item $\chi^2_{\text{crit}}\approx 122.1451$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Series/erlang_u01_series.png}
+\end{columns}
+\end{frame}
+
+% ---------- SERIES: PYTHON ----------
+\begin{frame}{Prueba de Series ($\chi^2$) -- Python uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item $k=10 \;\Rightarrow\; df=99$
+  \item $\chi_0^2=111.9290$
+  \item $\chi^2_{\text{crit}}\approx 122.1451$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Series/python_u01_series.png}
+\end{columns}
+\end{frame}
+
+% ---------- SERIES: JULIA ----------
+\begin{frame}{Prueba de Series ($\chi^2$) -- Julia uniforme [0,1)}
+\begin{columns}[T,onlytextwidth]
+\column{0.38\textwidth}
+
+\begin{block}{Resumen}
+\begin{itemize}\itemsep3pt
+  \item $\alpha=0.05$
+  \item $n=1{,}000{,}000$
+  \item $k=10 \;\Rightarrow\; df=99$
+  \item $\chi_0^2=110.0172$
+  \item $\chi^2_{\text{crit}}\approx 122.1451$
+  \item \textbf{Decisión:} No se rechaza $H_0$
+\end{itemize}
+\end{block}
+
+\column{0.62\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Series/julia_u01_series.png}
+\end{columns}
+\end{frame}
+
+% ---------- DIAPOSITIVA: CONCLUSIONES (ACTUALIZADAS) ----------
+\begin{frame}[shrink=5]{Conclusiones}
+\begin{itemize}\itemsep6pt
+  \item Para las muestras continuas $U(0,1)$ \textbf{(Java, Julia, Python y Erlang)}, los resultados fueron consistentes con uniformidad: \textbf{promedio, varianza, corridas, huecos (dígitos y números), póker y series} no rechazaron $H_0$ con $\alpha=0.05$.
+  
+  \item En las muestras discretas \textbf{Python $\{1..6\}$, C $\{1..4\}$, C $\{1..8\}$ y Racket $\{1..20\}$}, las pruebas aplicadas \textbf{(promedio, varianza y corridas)} no rechazaron $H_0$ con $\alpha=0.05$.
+
+  \item Las pruebas de \textbf{huecos, póker y series} se enfocaron en las secuencias continuas $U(0,1)$ (tal como se trabajó en el análisis), mientras que para discretas se evaluaron principalmente \textbf{media/varianza} y \textbf{dependencia (corridas)}.
+
+  \item En general, \textbf{no rechazar $H_0$} indica que \textbf{no hay evidencia estadística} (al 5\%) para decir que la secuencia no es uniforme/independiente; \textbf{no prueba} que el generador sea “perfecto”. Por eso es correcto usar \textbf{varias pruebas} para cubrir distribución e independencia.
+\end{itemize}
+\end{frame}
+
+\end{document}

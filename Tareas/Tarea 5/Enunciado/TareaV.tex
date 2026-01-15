@@ -1,0 +1,143 @@
+\documentclass{proc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx} % Para posibles diagramas, si se necesita
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Tarea V Simulación para un Sistema de Colas en un Restaurante de Comida Rápida}
+\author{Simulación de Workflow}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este documento describe la especificación para una simulación de un sistema de colas en un restaurante de comida rápida. El sistema modela un workflow con múltiples etapas de servicio, donde los clientes no necesariamente pasan por todas las fases, sino que cada etapa se activa con una probabilidad específica basada en el pedido del cliente. El objetivo principal de la simulación es evaluar y minimizar el tiempo de espera promedio de los clientes en el sistema, modelado como una red de colas abierta con enrutamiento probabilístico. 
+
+Adicionalmente, se propone una configuración alternativa de servidores para minimizar la varianza del tiempo de espera, manteniendo un enfoque en la eficiencia del workflow. La simulación se implementará utilizando técnicas de simulación discreta de eventos, asumiendo llegadas de clientes Poisson y tiempos de servicio con distribuciones específicas por etapa.
+
+El sistema se compone de las siguientes etapas (estaciones de servicio):
+\begin{itemize}
+    \item \textbf{Cajas (Cashiers)}: Recepción y pago del pedido.
+    \item \textbf{Refrescos (Drinks)}: Preparación de bebidas.
+    \item \textbf{Freidora (Fryer)}: Preparación de productos fritos (e.g., papas).
+    \item \textbf{Postres (Desserts)}: Preparación de postres.
+    \item \textbf{Pollo (Chicken)}: Preparación de items de pollo.
+\end{itemize}
+
+Cada cliente comienza en las cajas y luego se enruta probabilísticamente a las etapas subsiguientes, según las necesidades de su pedido. El sistema es una red de colas en serie-paralelo con probabilidades de ramificación.
+
+\section{Modelo de Colas}
+El sistema se modela como una red de colas de Jackson abierta, donde:
+- Las llegadas de clientes siguen un proceso Poisson con tasa $\lambda = 3$ (ajustable en la simulación).
+- Cada estación $i$ (para $i \in \{\text{cajas}, \text{refrescos}, \text{freidora}, \text{postres}, \text{pollo}\}$) tiene $c_i$ servidores paralelos, con tiempos de servicio independientes.
+- Los tiempos de servicio en cada estación siguen distribuciones específicas (exponenciales para simplicidad, capturando variabilidad en operaciones de comida rápida):
+  \begin{itemize}
+    \item Cajas: Distribución exponencial con media $\mu_{\text{cajas}}^{-1} = 2.5$ minutos.
+    \item Refrescos: Distribución exponencial con media $\mu_{\text{refrescos}}^{-1} = 0.75$ minuto.
+    \item Freidora: Distribución normal discreta con media $\mu_{\text{freidora}}^{-1} = 3$ minutos (tasa $\mu_{\text{freidora}} \approx 0.333$ por minuto).
+    \item Postres: Distribución binomial con media $\mu_{\text{postres}}^{-1}, n = 5$ y $p = 0.6$ minutos (tasa $\mu_{\text{postres}} \approx 0.667$ por minuto).
+    \item Pollo: Distribución geométrica con $p=0.1$ y $x$ siendo los minutos.
+  \end{itemize}
+- Se asume disciplina FCFS (First-Come, First-Served) en cada cola, con capacidad infinita para evitar rechazos.
+- El tiempo total de espera de un cliente es la suma de los tiempos de espera en cola y servicio en las estaciones visitadas.
+
+Para una red de colas con enrutamiento probabilístico, el tiempo de espera promedio $W$ en el sistema se calcula como:
+$$
+W = \sum_{i} p_i \left( \frac{\rho_i}{\mu_i (1 - \rho_i)} + \frac{1}{\mu_i} \right),
+$$
+donde $\rho_i = \lambda_i / (c_i \mu_i)$ es la utilización de la estación $i$, $\lambda_i$ es la tasa de llegada efectiva a $i$ (ajustada por probabilidades de enrutamiento), $p_i$ es la probabilidad de visitar $i$, y el primer término representa el tiempo en cola (aproximación M/M/c).
+
+\subsection{Cantidad de trabajos por servidor}
+Cada cliente, tendrá una cantidad de órdenes en los servidores, que sigue una binomial con $n=5$ y $p= \frac{2}{5}$
+
+\section{Workflow y Probabilidades de Enrutamiento}
+Los clientes no pasan por todas las fases; en su lugar, después de las cajas (que todos visitan con probabilidad $p_{\text{cajas}} = 1$), se enruta probabilísticamente a las etapas subsiguientes. Las probabilidades se basan en patrones típicos de pedidos en comida rápida (e.g., no todos piden pollo o postres). Se definen las siguientes probabilidades condicionales de visita (independientes entre etapas para simplicidad):
+
+\begin{itemize}
+    \item Probabilidad de necesitar refrescos después de cajas: $p_{\text{refrescos}} = 0.9$ (la mayoría pide bebidas).
+    \item Probabilidad de necesitar freidora (e.g., papas fritas, nuggets, etc): $p_{\text{freidora}} = 0.7$.
+    \item Probabilidad de necesitar postres: $p_{\text{postres}} = 0.25$.
+    \item Probabilidad de necesitar pollo: $p_{\text{pollo}} = 0.3$.
+\end{itemize}
+
+El enrutamiento es probabilístico: un cliente sale de una estación y decide independientemente si visita la siguiente con su probabilidad respectiva. El flujo efectivo $\lambda_i = \lambda \prod_{j \text{ previas}} p_j$ para estaciones en secuencia, pero dado el paralelismo, se simula visitando subconjuntos posibles.
+
+La simulación debe generar trayectorias de clientes muestreando estas probabilidades para determinar el sub-workflow de cada uno (e.g., un cliente podría ir: cajas $\to$ refrescos $\to$ freidora, sin pollo ni postres).
+
+\section{Servidores}
+Se cuentan en el restaurante con 12 colaboradores. Su tarea consiste en indicar cuántos deben trabajar en cada una de las estaciones, tal que se minimice el tiempo de espera promedio y la varianza promedio.
+
+\section{Objetivos de Optimización en la Simulación}
+La simulación correrá por un horizonte de tiempo $T = 8$ horas (un turno), replicando muchas corridas independientes para estimar promedios y varianzas. Métricas clave:
+- Tiempo de espera promedio por cliente: $\bar{W}$.
+- Varianza del tiempo de espera: $\text{Var}(W)$.
+- Utilización por estación: $\rho_i < 0.8$ para estabilidad.
+
+\subsection{Configuración para Minimizar Tiempo de Espera Promedio}
+Para minimizar $\bar{W}$, se optimiza el número de servidores $c_i$ asignando más recursos a cuellos de botella (estaciones con altas probabilidades y tiempos largos, como pollo y freidora). Ejemplo de configuración:
+\begin{itemize}
+    \item $c_{\text{cajas}} = 3$ (alta tasa de llegada).
+    \item $c_{\text{refrescos}} = 2$ (alta probabilidad, tiempo corto).
+    \item $c_{\text{freidora}} = 2$ (probabilidad media, tiempo medio).
+    \item $c_{\text{postres}} = 1$ (baja probabilidad).
+    \item $c_{\text{pollo}} = 5$ (tiempo largo, probabilidad media).
+\end{itemize}
+
+En la simulación, esta configuración reduce $\bar{W}$ a aproximadamente 5-7 minutos (estimado analítico: resolver el sistema de ecuaciones de flujo y usar fórmulas M/M/c para cada cola, ponderado por probabilidades).
+
+\section{Evaluación de la Simulación}
+
+En esta sección se describe el proceso de evaluación de la simulación del sistema de colas en el restaurante de comida rápida. El objetivo es establecer un criterio claro y cuantificable para asignar puntos a cada generación de datos probabilísticos en función de su alineación con la especificación del sistema. La evaluación se centra en cómo cada configuración y ejecución de la simulación se correlaciona con la media de tiempo de espera obtenida y su comparabilidad con otros enfoques similares.
+
+\subsection{Criterios de Evaluación}
+La evaluación se basará en los siguientes criterios:
+
+1. \textbf{Alineación con la Especificación}: Cada generación de datos probabilísticos debe cumplir con los requisitos establecidos en la especificación del sistema, incluyendo las probabilidades de enrutamiento y la estructura del workflow.
+
+2. \textbf{Media de Tiempo de Espera}: Se medirá la media de tiempo de espera promedio por cliente obtenida en la simulación. Esta media debe ser corroborable con las ejecuciones de otras configuraciones o simulaciones que operen bajo condiciones similares.
+
+3. \textbf{Comparabilidad de Resultados}: Se espera que los resultados sean comparables con otras simulaciones que abordan el mismo problema. Esto implica que los tiempos de espera deben estar en un rango razonable en comparación con los resultados de otros enfoques.
+
+\subsection{Asignación de Puntos}
+La evaluación se realiza en una escala de 0 a 100 puntos, donde:
+
+- **Alineación con la Especificación (40 puntos)**: 
+  - 0 puntos si no se cumplen los criterios.
+  - 20 puntos si hay cumplimiento parcial (algunas probabilidades o etapas no se implementan correctamente).
+  - 40 puntos si se cumplen todas las especificaciones.
+
+- **Media de Tiempo de Espera (50 puntos)**: 
+  - Se asignarán puntos basados en la media de tiempo de espera en comparación con la media mínima esperada. La puntuación se calculará con la siguiente fórmula:
+  
+  $$
+  \text{Puntuación} = 50 \times \left(1 - \frac{\bar{W} - \bar{W}_{\text{min}}}{\bar{W}_{\text{max}} - \bar{W}_{\text{min}}}\right)
+  $$
+  
+  donde:
+  - $\bar{W}$ es la media de tiempo de espera obtenida en la simulación.
+  - $\bar{W}_{\text{min}}$ es la media mínima alcanzable.
+  - $\bar{W}_{\text{max}}$ es la media máxima observada en simulaciones comparables.
+
+- **Comparabilidad de Resultados (10 puntos)**: 
+  - 0 puntos si los resultados no son comparables.
+  - 5 puntos si los resultados son parcialmente comparables (similaridad en tendencias, pero no en magnitudes).
+  - 10 puntos si los resultados son totalmente comparables con otros enfoques similares.
+
+\subsection{Cálculo de la Puntuación Final}
+La puntuación final de cada ejecución de simulación se calculará sumando los puntos obtenidos en cada criterio:
+
+$$
+\text{Puntuación Total} = \text{Puntos de Alineación} + \text{Puntos de Media de Tiempo de Espera} + \text{Puntos de Comparabilidad}
+$$
+
+El objetivo es que cada simulación alcance una puntuación total cercana a 100, lo que indicaría que se ha logrado una media de tiempo de espera mínima corroborable y se han cumplido todos los criterios establecidos en la especificación.
+
+Esta evaluación permitirá una comparación efectiva entre diferentes configuraciones y enfoques, proporcionando una base sólida para la mejora continua del sistema de colas en el restaurante de comida rápida.
+
+
+\end{document}

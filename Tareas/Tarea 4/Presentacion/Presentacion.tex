@@ -1,0 +1,443 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\title{Análisis de Distribuciones de Probabilidad}
+\subtitle{Estudio de cuatro muestras discretas}
+\author{ }
+\date{ }
+\begin{document}
+
+%-------------------------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Objetivo del análisis}
+Dadas cuatro muestras numéricas discretas:
+\begin{itemize}
+    \item Identificar la distribución de probabilidad generadora
+    \item Estimar sus parámetros
+    \item Validar el ajuste mediante pruebas estadísticas
+\end{itemize}
+\bigskip
+Se emplean las pruebas:
+\begin{itemize}
+    \item $\chi^2$ de bondad de ajuste
+    \item Kolmogorov--Smirnov
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Marco teórico}
+Sea $X$ una variable aleatoria discreta.
+
+\begin{block}{Distribución Binomial}
+\[
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+\]
+\[
+\mathbb{E}[X]=np, \qquad \mathrm{Var}(X)=np(1-p)
+\]
+\end{block}
+
+\begin{block}{Distribución Poisson--Binomial}
+\[
+X = \sum_{i=1}^{m} \mathrm{Bernoulli}(p_i)
+\]
+\[
+\mathbb{E}[X]=\sum p_i, \quad \mathrm{Var}(X)=\sum p_i(1-p_i)
+\]
+\end{block}
+\end{frame}
+
+%=================================================
+\section{Muestra 1}
+%-------------------------------------------------
+\begin{frame}{Muestra 1}
+Análisis análogo:
+\begin{itemize}
+    \item Histograma
+    \item Identificación de distribución
+    \item Pruebas $\chi^2$ y K--S
+\end{itemize}
+\end{frame}
+
+%=================================================
+\section{Muestra 2}
+%-------------------------------------------------
+\begin{frame}{Descripción de la muestra 2}
+Características observadas:
+\begin{itemize}
+    \item Variable discreta
+    \item Valores enteros entre 0 y 14
+    \item Tamaño muestral $n \approx 100\,000$
+\end{itemize}
+Momentos empíricos:
+\[
+\mu = 6.206, \qquad \sigma^2 = 3.784
+\]
+\bigskip
+La forma empírica sugiere una distribución unimodal y aproximadamente simétrica.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Frecuencias observadas}
+Se calcularon:
+\begin{itemize}
+    \item Frecuencias absolutas $O_i$
+    \item Frecuencias relativas $f_i = O_i/n$
+\end{itemize}
+\bigskip
+El histograma de barras muestra una forma de campana discreta, con colas acotadas.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Ajuste binomial por momentos}
+Se igualan los momentos teóricos con los empíricos:
+\[
+np = \mu
+\]
+\[
+np(1-p) = \sigma^2
+\]
+Resolviendo:
+\[
+n \approx 16, \qquad p \approx 0.388
+\]
+\bigskip
+Esto define la binomial candidata:
+\[
+X \sim \mathrm{Bin}(16,\,0.388)
+\]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Prueba $\chi^2$ (binomial)}
+Se define:
+\[
+\chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i}
+\]
+Resultados:
+\[
+\chi^2 \approx 184
+\]
+\[
+p\text{-valor} \ll 0.05
+\]
+\bigskip
+Conclusión:
+\begin{block}{}
+Se rechaza la hipótesis de binomial con ensayos idénticos.
+\end{block}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Modelo Poisson--Binomial}
+Se considera un modelo más general:
+\[
+X = \sum_{i=1}^{m} \mathrm{Bernoulli}(p_i)
+\]
+Estimación del número efectivo:
+\[
+m_{\text{eff}} = \frac{\mu^2}{\mu - \sigma^2} \approx 15.9
+\]
+\bigskip
+Este valor es consistente con un proceso de aproximadamente 16 ensayos no idénticos.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Conclusión para la muestra 2}
+\begin{itemize}
+    \item La muestra no es binomial i.i.d.
+    \item Es compatible con una Poisson--binomial
+    \item La binomial sirve como buena aproximación descriptiva
+\end{itemize}
+\bigskip
+Distribución seleccionada:
+\[
+\boxed{\text{Poisson--Binomial}}
+\]
+\end{frame}
+
+%=================================================
+\section{Muestra 3}
+%-------------------------------------------------
+\begin{frame}{Muestra 3}
+(Contenido a completar)
+\end{frame}
+%=================================================
+\section{Muestra 4 (M16)}
+%-------------------------------------------------
+\begin{frame}{Descripción de la muestra 4 (M16)}
+Características observadas:
+\begin{itemize}
+    \item Variable continua
+    \item Soporte estrictamente positivo
+    \item Tamaño muestral: $n = 100\,000$
+\end{itemize}
+Momentos empíricos:
+\[
+\mu = 10.33, \qquad
+\sigma^2 = 137.93, \qquad
+\sigma = 11.74
+\]
+Valores extremos:
+\[
+x_{\min} = 1.29\times10^{-13}, \qquad
+x_{\max} = 41.67
+\]
+La muestra presenta fuerte asimetría a la derecha.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Análisis exploratorio}
+Observaciones relevantes:
+\begin{itemize}
+    \item Dispersión elevada: $\sigma > \mu$
+    \item Cola derecha larga
+    \item Alta concentración de valores pequeños
+\end{itemize}
+\bigskip
+Estas características descartan distribuciones simétricas
+y sugieren modelos con soporte positivo como:
+\begin{itemize}
+    \item Lognormal
+    \item Gamma
+    \item Weibull
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Modelo lognormal candidato}
+Se propone inicialmente:
+\[
+X \sim \mathrm{LogNormal}(\mu_{\log}, \sigma_{\log})
+\]
+donde:
+\[
+\mu_{\log} = \mathbb{E}[\log X], \qquad
+\sigma_{\log} = \mathrm{Std}(\log X)
+\]
+La distribución lognormal es adecuada para variables
+generadas por procesos multiplicativos y con colas largas.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Prueba $\chi^2$ (lognormal)}
+Se agrupan los datos en clases de igual amplitud y se calcula:
+\[
+\chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i}
+\]
+Resultados:
+\[
+\chi^2 \text{ grande}, \qquad p\text{-valor} \ll 0.05
+\]
+\bigskip
+Conclusión:
+\begin{block}{}
+Se rechaza la hipótesis exacta de lognormalidad.
+\end{block}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Prueba Kolmogorov--Smirnov}
+Se compara la CDF empírica $F_n(x)$ con la CDF teórica $F(x)$.
+Resultados:
+\[
+D \text{ elevado}, \qquad p\text{-valor} \approx 0
+\]
+\bigskip
+El rechazo se debe en gran parte al tamaño muestral
+y a desviaciones localizadas en las colas.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Comparación con otras distribuciones}
+Se evaluaron modelos alternativos:
+\begin{itemize}
+    \item Gamma
+    \item Weibull
+    \item Exponencial
+\end{itemize}
+\bigskip
+Resultados comparativos:
+\begin{itemize}
+    \item Ningún modelo supera completamente las pruebas
+    \item La lognormal presenta el mejor ajuste visual global
+    \item Mejor comportamiento en la región central
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Conclusión para la muestra 4}
+\begin{itemize}
+    \item La muestra no sigue exactamente una lognormal
+    \item Las pruebas formales rechazan el ajuste exacto
+    \item La lognormal es la mejor aproximación empírica global
+\end{itemize}
+\bigskip
+Distribución seleccionada:
+\[
+\boxed{\text{Lognormal (aproximación empírica)}}
+\]
+\end{frame}
+
+%-------------------------------------------------
+% Muestra 5
+%=================================================
+% Muestra 5 (m5)
+\section{Muestra m5}
+
+%-------------------------------------------------
+\begin{frame}{Descripción de la muestra (m5)}
+\begin{itemize}
+    \item Variable discreta (valores enteros)
+    \item Tamaño muestral: $n = 100\,000$
+    \item Valores: $x_{\min}=3$, $x_{\max}=17$
+\end{itemize}
+Momentos empíricos:
+\[
+\mu = 9.49973,\qquad \sigma^2 = 8.65502,\qquad \sigma = 2.94194
+\]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Frecuencias observadas (FO y FR)}
+\small
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{x} & \textbf{FO} & \textbf{FR} \\ \hline
+3  & 1875  & 0.01875 \\
+4  & 2697  & 0.02697 \\
+5  & 4634  & 0.04634 \\
+6  & 6942  & 0.06942 \\
+7  & 9784  & 0.09784 \\
+8  & 11508 & 0.11508 \\
+9  & 12654 & 0.12654 \\
+10 & 12633 & 0.12633 \\
+11 & 11588 & 0.11588 \\
+12 & 9661  & 0.09661 \\
+13 & 6764  & 0.06764 \\
+14 & 4621  & 0.04621 \\
+15 & 2745  & 0.02745 \\
+16 & 1429  & 0.01429 \\
+17 & 465   & 0.00465 \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Comparación visual: PMF empírica vs modelos}
+\begin{center}
+\includegraphics[width=0.95\linewidth]{m5_pmf_comparacion.png}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Comparación visual: CDF empírica vs modelos}
+\begin{center}
+\includegraphics[width=0.95\linewidth]{m5_cdf_comparacion.png}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Modelos evaluados}
+\begin{itemize}
+    \item \textbf{Binomial desplazada:} $Y=X-3 \sim \mathrm{Bin}(14,p)$, $p=0.46427$.
+    \item \textbf{Beta-Binomial (MLE):} $Y \sim \mathrm{BetaBin}(14,\alpha,\beta)$,
+    \[
+    \alpha=3.52441,\qquad \beta=4.07544.
+    \]
+    \item \textbf{Normal truncada/discretizada:}
+    \[
+    \mu=9.49973,\qquad \sigma=2.94194.
+    \]
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Prueba $\chi^2$ (bondad de ajuste)}
+\begin{itemize}
+    \item \textbf{Binomial desplazada:}
+    \[
+    \chi^2 = 459708.23,\quad df=13,\quad p\approx 0 \Rightarrow \textbf{Rechazado.}
+    \]
+    \item \textbf{Beta-Binomial (MLE):}
+    \[
+    \chi^2 = 1146.67,\quad df=12,\quad p\approx 0 \Rightarrow \textbf{Rechazado.}
+    \]
+    \item \textbf{Normal truncada/discretizada:}
+    \[
+    \chi^2 = 679.74,\quad df=12,\quad p\approx 0 \Rightarrow \textbf{Rechazado.}
+    \]
+\end{itemize}
+\begin{block}{Nota}
+Con $n=100\,000$, incluso discrepancias pequeñas suelen dar $p$-valores muy bajos.
+\end{block}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Prueba Kolmogorov--Smirnov}
+\begin{itemize}
+    \item \textbf{Binomial desplazada:}
+    \[
+    D=0.23075,\quad D_{\text{crit}}=0.00430 \Rightarrow \textbf{Rechazado.}
+    \]
+    \item \textbf{Beta-Binomial (MLE):}
+    \[
+    D=0.13389,\quad D_{\text{crit}}=0.00430 \Rightarrow \textbf{Rechazado.}
+    \]
+    \item \textbf{Normal truncada/discretizada:}
+    \[
+    D=0.01895,\quad D_{\text{crit}}=0.00430,\quad p\approx 1.28\times 10^{-31}
+    \Rightarrow \textbf{Rechazado.}
+    \]
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Conclusión (m5)}
+\begin{itemize}
+    \item Todas las hipótesis fueron rechazadas por $\chi^2$ y K--S (alto poder por $n$ grande).
+    \item Se selecciona el modelo con mejor semejanza visual y menores estadísticos:
+\end{itemize}
+\[
+\boxed{\text{Mejor aproximación: Normal truncada/discretizada en }[3,17]\ (\mu=9.49973,\ \sigma=2.94194)}
+\]
+\begin{itemize}
+    \item Segundo mejor: Beta-Binomial (MLE).
+    \item Peor ajuste: Binomial desplazada.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}{Conclusiones generales}
+\begin{itemize}
+    \item Cada muestra presenta un mecanismo generador distinto
+    \item Las pruebas estadísticas son determinantes
+    \item La similitud gráfica no implica igualdad de distribuciones
+    \item Distribuciones complejas describen mejor datos reales
+\end{itemize}
+\end{frame}
+
+\end{document}
+
+

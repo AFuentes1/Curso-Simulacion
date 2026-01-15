@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Muestra 1}{4}{0}{1}
+\beamer@sectionintoc {2}{Muestra 2}{5}{0}{2}
+\beamer@sectionintoc {3}{Muestra 3}{11}{0}{3}
+\beamer@sectionintoc {4}{Muestra 4 (M16)}{12}{0}{4}
+\beamer@sectionintoc {5}{Muestra m5}{19}{0}{5}

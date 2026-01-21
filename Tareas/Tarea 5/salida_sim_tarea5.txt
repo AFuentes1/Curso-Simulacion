@@ -1,18 +1,23 @@
 === Salida de sim_tarea5.py ===
-Fecha: 2026-01-21 09:12:31
+Fecha: 2026-01-21 09:19:07
 
 --- STDOUT ---
-
- MIN_W {'cajas': 2, 'ref': 1, 'frei': 4, 'pos': 2, 'pol': 3}
-W_prom: 19.459789261871173
-VarW_prom: 357.4502636225063
-rho_prom: {'cajas': 0.14012525978570223, 'ref': 0.07556631137973097, 'frei': 0.053372479628926994, 'pos': 0.04122193013071178, 'pol': 0.11083716558666425}
-
- MIN_VAR {'cajas': 2, 'ref': 2, 'frei': 2, 'pos': 3, 'pol': 3}
-W_prom: 19.044949937033508
-VarW_prom: 316.0255447461005
-rho_prom: {'cajas': 0.1343718181497872, 'ref': 0.03691720666528526, 'frei': 0.10562952132604982, 'pos': 0.02667456176602164, 'pol': 0.10771788254241736}
+Configuraciones válidas: 330
 
 
 --- STDERR ---
+Traceback (most recent call last):
+  File "C:\Users\antho\Desktop\Escritorio\TEC\2025\Verano\Simulación\Curso-Simulacion\Tareas\Tarea 5\sim_tarea5.py", line 415, in <module>
+    print(
+    ~~~~~^
+        f"[{idx:3d}/{len(configs)}] "
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        f"cfg={cfg}  W\u0304={W_mean:.3f}  Var(W)={Var_W:.3f}  viol={n_viol}"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\antho\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u0304' in position 32: character maps to <undefined>
 

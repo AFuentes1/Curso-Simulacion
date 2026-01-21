@@ -619,7 +619,7 @@ if __name__ == "__main__":
         writer = csv.writer(f)
         writer.writerow([
             "cajas","ref","frei","pos","pol",
-            "W_sim","Var_W","IC_low","IC_high",
+            "W_sim","W_profe","Var_W","IC_low","IC_high",
             "W_analitico_ref",
             "clientes_completados",
             "viol_rho",
@@ -629,6 +629,8 @@ if __name__ == "__main__":
             "score_total_100",
             "criterio_optimo"
         ])
+
+
 
 
         for r in results:
@@ -642,6 +644,7 @@ if __name__ == "__main__":
             writer.writerow([
                 *cfg,
                 round(r["W_sys"],4),
+                round(r["W_profe"],4),
                 round(r["Var_W"],4),
                 round(r["IC"][0],4),
                 round(r["IC"][1],4),

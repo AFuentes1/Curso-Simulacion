@@ -4,6 +4,7 @@ import math
 import random
 from dataclasses import dataclass, field
 from itertools import combinations_with_replacement, permutations
+import os
 
 # =========================
 # Distribuciones (minutos)
@@ -68,7 +69,6 @@ DEPART  = "DEPART"
 # =========================
 # Simulación DES
 # =========================
-
 def simulate(
     config,
     seed=123,
@@ -95,9 +95,16 @@ def simulate(
         "pol":   Station("pol",   config["pol"],   lambda: geometric(0.1)),
     }
 
-    # contador de jobs por estación (λ̂ᵢ)
+    # inicializar servidores individuales
     for st in stations.values():
         st.jobs_in = 0
+        st.free_servers = list(range(1, st.servers + 1))
+        st.busy = 0
+
+    # =========================
+    # EVENT LOG (LO QUE TÚ QUIERES)
+    # =========================
+    event_log = []
 
     # =========================
     # EVENTOS
@@ -115,16 +122,30 @@ def simulate(
 
     def start_service(st, t):
         job = st.queue.pop(0)
+        server_id = st.free_servers.pop(0)
+
         st.update_area(t)
         st.busy += 1
 
-        # tiempo en cola
-        job.client.wait_time += t - job.arrival_to_queue
-
+        start_time = t
         service_time = st.service_sampler()
+        end_time = t + service_time
+
+        # tiempo en cola
+        job.client.wait_time += start_time - job.arrival_to_queue
         job.client.service_time += service_time
 
-        schedule(t + service_time, DEPART, st.key, job)
+        # ===== TRACE EXACTO =====
+        event_log.append({
+            "estacion": st.key,
+            "hora_llegada": job.arrival_to_queue,
+            "hora_inicio": start_time,
+            "servidor": server_id,
+            "tiempo_atencion": service_time,
+            "hora_fin": end_time
+        })
+
+        schedule(end_time, DEPART, st.key, (job, server_id))
 
     # =========================
     # SIMULACIÓN
@@ -159,10 +180,10 @@ def simulate(
             st = stations[st_key]
             st.update_area(t)
 
-            st.jobs_in += 1  # λ̂ᵢ efectivo
+            st.jobs_in += 1
             st.queue.append(obj)
 
-            if st.busy < st.servers:
+            if st.free_servers:
                 start_service(st, t)
 
         # -------------------------
@@ -173,21 +194,23 @@ def simulate(
             st.update_area(t)
             st.busy -= 1
 
-            job = obj
+            job, server_id = obj
+            st.free_servers.append(server_id)
+
             c = job.client
 
             # ===== ETAPA 1 → ETAPA 2 =====
             if st.key == "cajas":
                 c.stage1_end = t
+                k = binomial(orders_n, orders_p)
 
-                for key, p in [("ref", p_ref), ("frei", p_frei),
-                               ("pos", p_pos), ("pol", p_pol)]:
-                    if random.random() < p:
-                        k = binomial(orders_n, orders_p)
-                        if k > 0:
+                if k > 0:
+                    for key, p in (("ref", p_ref), ("frei", p_frei), ("pos", p_pos), ("pol", p_pol)):
+                        if random.random() < p:
                             c.pending += k
                             for _ in range(k):
                                 schedule(t, ENTER, key, Job(c, t))
+                
 
                 if c.pending == 0:
                     c.stage2_end = t
@@ -201,7 +224,7 @@ def simulate(
                 if c.pending == 0:
                     completed.append(c)
 
-            if st.queue and st.busy < st.servers:
+            if st.queue and st.free_servers:
                 start_service(st, t)
 
     # =========================
@@ -223,41 +246,30 @@ def simulate(
         mean_W = sum(W_sys) / len(W_sys)
         var_W  = sum((w - mean_W) ** 2 for w in W_sys) / len(W_sys)
 
-        W_profe = T / len(completed)
+        throughput = len(completed) / T   # clientes / minuto
 
         stats.update({
             "W_sys_avg": mean_W,
             "W_wait_avg": sum(W_wait) / len(W_wait),
             "W_serv_avg": sum(W_serv) / len(W_serv),
             "W_sys_var": var_W,
-            "W_profe": W_profe,
-            "clients_completed": len(completed),
-            "throughput_clients": len(completed) / T  # clientes / min
+            "throughput": throughput,
+            "clients_completed": len(completed)
         })
 
-    # -------------------------
-    # ρ por estación
-    # -------------------------
     rho = {
         k: stations[k].busy_area / (T * max(1, stations[k].servers))
         for k in stations
     }
 
-    # -------------------------
-    # Throughput y λ̂ᵢ
-    # -------------------------
     lambda_hat = {
-        k: stations[k].jobs_in / T   # jobs / min
-        for k in stations
-    }
-
-    throughput_jobs = {
         k: stations[k].jobs_in / T
         for k in stations
     }
 
-    return stats, rho, lambda_hat, throughput_jobs
+    throughput_jobs = lambda_hat.copy()
 
+    return stats, rho, lambda_hat, throughput_jobs, event_log
 
 def W_analitico(cfg):
     # parámetros del PDF
@@ -309,7 +321,7 @@ def check_rho(rho_dict, threshold=0.8):
 # =========================
 if __name__ == "__main__":
 
-    R = 1000          # réplicas por configuración
+    R = 2        # réplicas por configuración
     T = 480.0       # minutos
     lam = 3.0       # clientes / minuto
 
@@ -328,6 +340,13 @@ if __name__ == "__main__":
     print(f"Configuraciones válidas: {len(configs)}")
 
     # ==================================================
+    # CARPETA RAÍZ PARA TODAS LAS TABLAS
+    # ==================================================
+    BASE_DIR = "tablas"
+    os.makedirs(BASE_DIR, exist_ok=True)
+
+
+    # ==================================================
     # SIMULACIÓN POR CONFIGURACIÓN
     # ==================================================
     results = []
@@ -342,40 +361,107 @@ if __name__ == "__main__":
             "pol":   cfg[4],
         }
 
+        # ==================================================
+        # CARPETA PARA ESTA CONFIGURACIÓN
+        # ==================================================
+        cfg_name = f"cfg_c{cfg[0]}_r{cfg[1]}_f{cfg[2]}_p{cfg[3]}_l{cfg[4]}"
+        cfg_dir = os.path.join(BASE_DIR, cfg_name)
+        os.makedirs(cfg_dir, exist_ok=True)
+
+
         W_means = []
         W_vars  = []
-        W_profe_means = []
+        throughput_means  = []
 
         rho_acc = {k: 0.0 for k in cfg_dict}
         jobs_acc = {k: 0 for k in cfg_dict}
         clients_acc = 0
+        # ============================================
+        # ACUMULAR EVENTOS DE TODAS LAS RÉPLICAS
+        # ============================================
+        
+
 
         for r in range(R):
-            stats, rho, lambda_hat_rep, throughput_jobs = simulate(
+            stats, rho, lambda_hat_rep, throughput_jobs, event_log = simulate(
                 config=cfg_dict,
                 seed=100000 * idx + r,
                 T=T,
                 lam=lam
             )
 
+            eventos_I = []    # solo cajas
+            eventos_II = []   # ref, frei, pos, pol
+
+
+            for e in event_log:
+                fila_base = [
+                    round(e["hora_llegada"], 4),
+                    round(e["hora_inicio"], 4),
+                    e["servidor"],
+                    round(e["tiempo_atencion"], 4),
+                    round(e["hora_fin"] - e["hora_llegada"], 4),
+                    round(e["hora_fin"], 4)
+                ]
+
+                if e["estacion"] == "cajas":
+                    eventos_I.append(fila_base)
+                else:
+                    eventos_II.append([e["estacion"]] + fila_base)
+
+
+
+
 
             W_means.append(stats["W_sys_avg"])
             W_vars.append(stats["W_sys_var"])
-            W_profe_means.append(stats["W_profe"])
+            throughput_means .append(stats["throughput"])
 
             for k in rho_acc:
                 rho_acc[k] += rho[k]
                 jobs_acc[k] += throughput_jobs[k]
 
             clients_acc += stats["clients_completed"]
+        
+        with open(
+            os.path.join(cfg_dir, f"etapa_I_{r+1}.csv"),
+            "w", newline="", encoding="utf-8"
+        ) as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                "Hora_llegada",
+                "Hora_inicio_atencion",
+                "Servidor",
+                "Tiempo_atencion",
+                "Tiempo_sistema_1",
+                "Hora_fin"
+            ])
+            writer.writerows(eventos_I)
 
+
+        
+        with open(
+            os.path.join(cfg_dir, f"etapa_II_{r+1}.csv"),
+            "w", newline="", encoding="utf-8"
+        ) as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                "Estacion",
+                "Hora_llegada",
+                "Hora_inicio_atencion",
+                "Servidor",
+                "Tiempo_atencion",
+                "Tiempo_sistema_2",
+                "Hora_fin"
+            ])
+            writer.writerows(eventos_II)
 
         # =========================
         # PROMEDIOS
         # =========================
         W_mean = sum(W_means) / R
         Var_W  = sum(W_vars) / R
-        W_profe_mean = sum(W_profe_means) / R
+        throughput_mean = sum(throughput_means ) / R
 
         # IC 95% para W̄
         if R > 1:
@@ -390,6 +476,7 @@ if __name__ == "__main__":
         # λ̂ᵢ efectivo
         lambda_hat = {k: jobs_acc[k] / (R * T) for k in jobs_acc}
 
+
         # analítico (solo referencia)
         W_an, rho_an = W_analitico(cfg_dict)
 
@@ -400,7 +487,7 @@ if __name__ == "__main__":
         results.append({
             "config": cfg,
             "W_sys": W_mean,
-            "W_profe": W_profe_mean,
+            "throughput": throughput_mean,
             "servers_total": sum(cfg),   # todos son humanos en tu modelo
             "Var_W": Var_W,
             "IC": (IC_low, IC_high),
@@ -417,36 +504,6 @@ if __name__ == "__main__":
             f"cfg={cfg}  W̄={W_mean:.3f}  Var(W)={Var_W:.3f}  viol={n_viol}"
         )
 
-    # ==================================================
-    # SCORE (SECCIÓN 6 PDF – DESGLOSE COMPLETO)
-    # ==================================================
-
-    W_vals = [r["W_sys"] for r in results]
-    W_min, W_max = min(W_vals), max(W_vals)
-
-    for r in results:
-
-        # 40 pts: alineación con la especificación
-        r["score_align"] = 40.0
-
-        # 10 pts: comparabilidad
-        r["score_comp"] = 10.0
-
-        # 50 pts: media de tiempo de espera
-        if abs(W_max - W_min) < 1e-9:
-            r["score_wait"] = 50.0
-        else:
-            r["score_wait"] = 50.0 * (
-                1 - (r["W_sys"] - W_min) / (W_max - W_min)
-            )
-
-        # score total
-        r["score"] = (
-            r["score_align"]
-            + r["score_wait"]
-            + r["score_comp"]
-        )
-
 
 
     # ==================================================
@@ -454,7 +511,7 @@ if __name__ == "__main__":
     # ==================================================
     best_W = min(
         results,
-        key=lambda r: (r["W_profe"], r["servers_total"])
+        key=lambda r: (r["throughput"], r["servers_total"])
     )
 
     best_VAR = min(results, key=lambda r: r["Var_W"])
@@ -463,8 +520,8 @@ if __name__ == "__main__":
     print("CONFIGURACIONES ÓPTIMAS")
     print("==============================================")
 
-    print("\nMIN_W (minimiza W_profe = T / clientes)")
-    print(f"cfg={best_W['config']}  W_profe={best_W['W_profe']:.4f}  "
+    print("\nMIN_W (minimiza throughput = T / clientes)")
+    print(f"cfg={best_W['config']}  throughput={best_W['throughput']:.4f}  "
           f"W̄_real={best_W['W_sys']:.4f}  "
           f"IC95%=[{best_W['IC'][0]:.4f},{best_W['IC'][1]:.4f}]")
 
@@ -619,14 +676,10 @@ if __name__ == "__main__":
         writer = csv.writer(f)
         writer.writerow([
             "cajas","ref","frei","pos","pol",
-            "W_sim","W_profe","Var_W","IC_low","IC_high",
+            "W_sim","throughput","Var_W","IC_low","IC_high",
             "W_analitico_ref",
             "clientes_completados",
             "viol_rho",
-            "score_align_40",
-            "score_wait_50",
-            "score_comp_10",
-            "score_total_100",
             "criterio_optimo"
         ])
 
@@ -644,17 +697,13 @@ if __name__ == "__main__":
             writer.writerow([
                 *cfg,
                 round(r["W_sys"],4),
-                round(r["W_profe"],4),
+                round(r["throughput"],4),
                 round(r["Var_W"],4),
                 round(r["IC"][0],4),
                 round(r["IC"][1],4),
                 round(r["W_an"],4),
                 round(r["clients"],2),
                 r["viol"],
-                round(r["score_align"],2),
-                round(r["score_wait"],2),
-                round(r["score_comp"],2),
-                round(r["score"],2),
                 criterio
             ])
 

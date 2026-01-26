@@ -7,7 +7,7 @@ import numpy as np
 from scipy import stats
 
 from src.config import ModelConfig, DistSpec, CAJA, ALL_STATIONS
-
+ 
 
 # -----------------------------
 # Helpers: distribución -> scipy rv

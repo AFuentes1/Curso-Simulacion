@@ -2,7 +2,7 @@
 from src.config import make_base_config
 from src.simulation import run_replications
 
-def main():
+def main(): 
     cfg = make_base_config()
 
     print("✅ Proyecto listo. Configuración base cargada.\n")
@@ -22,7 +22,7 @@ def main():
     print("\nSettings:", cfg.settings)
     print("\nObjetivo: espera promedio ≤", cfg.wait_threshold_minutes, "min")
 
-    servers = {"caja": 4, "freidora": 3, "refrescos": 3, "pollo": 3}
+    servers = {"caja": 4, "freidora": 6, "refrescos": 5, "pollo": 5}
     results = run_replications(cfg, servers)
     print("Tiempo en sistema:", results[0].mean_time_in_system)
     print("POR ESTACIÓN:", results[0].per_station)

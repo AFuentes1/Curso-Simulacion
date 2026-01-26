@@ -135,12 +135,21 @@ def simulate_once(cfg: ModelConfig, servers: Dict[str, int], seed: int) -> Repli
         total_queue_wait = w_cashier
 
         for st in required_stations:
-            s = float(rv_srv[st].rvs(random_state=rng))
-            if s < 0:
-                s = 0.0
-            t_done, wq = station_objs[st].process(t_cashier_done, s)
+            # --- Binomial: cantidad de órdenes en esta estación ---
+            k = int(rng.binomial(5, 2/5))
+
+            # tiempo base de servicio
+            s_base = float(rv_srv[st].rvs(random_state=rng))
+            if s_base < 0:
+                s_base = 0.0
+
+            # tiempo real = base × carga del pedido
+            service_time = s_base * k
+
+            t_done, wq = station_objs[st].process(t_cashier_done, service_time)
             completion_times.append(t_done)
             total_queue_wait += wq
+
 
         t_departure = max(completion_times)
         time_in_system = t_departure - t_arrival

@@ -3,6 +3,7 @@ from src.config import make_base_config, DistSpec
 import src.config
 from src.simulation import run_replications
 from itertools import product
+import src.simulation
                                                                                   
 def cost_of(servers, costs):
     return sum(servers[k] * costs[k] for k in servers)
@@ -12,10 +13,10 @@ def solve_2c(cfg):
 
     # rangos razonables (no tiene sentido probar 20 cajas)
     for caja, fre, ref, pol in product(
-        range(1, 8),   # caja
-        range(1, 3),  # freidora
-        range(1, 2),   # refrescos
-        range(1, 15)   # pollo
+        range(1, 8), # caja
+        range(1, 8), # freidora (antes 1..2)
+        range(1, 8), # refrescos (antes SIEMPRE 1)
+        range(1, 15) # pollo
     ):
         servers = {
             "caja": caja,

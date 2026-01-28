@@ -139,12 +139,32 @@ def save_results(tag: str, rows: List[Dict[str, Any]]) -> None:
     df = pd.DataFrame(flat_rows)
     df.to_csv(out_dir / f"search_{tag}.csv", index=False, encoding="utf-8-sig")
 
+def with_pollo_50(cfg: ModelConfig) -> ModelConfig:
+    # Ajuste simple para que P(pollo)=0.50:
+    # antes: pollo = pollo_y_refresco(0.25) + combo(0.10) = 0.35
+    # ahora: pollo_y_refresco=0.40 y dejamos combo=0.10 => 0.50
+    # para mantener suma=1: bajamos frito_y_refresco de 0.35 a 0.20 (solo_refresco queda 0.30)
+    ot = {o.name: o for o in cfg.order_types}
+
+    new_order_types = [
+        replace(ot["solo_refresco"], prob=0.30),
+        replace(ot["frito_y_refresco"], prob=0.20),
+        replace(ot["pollo_y_refresco"], prob=0.40),
+        replace(ot["combo_completo"], prob=0.10),
+    ]
+
+    return replace(cfg, order_types=new_order_types)
+
 
 def main():
     cfg = make_base_config()
 
+    # -------------------------
+    # (a) costo mínimo cumpliendo <= 3
+    # -------------------------
     print("\n=== (a) Costo mínimo para garantizar espera promedio ≤ 3 min (Top 3) ===")
     top_a = top3_min_cost_meeting_wait(cfg, wait_threshold=cfg.wait_threshold_minutes)
+
     if not top_a:
         print("No se encontró configuración que cumpla dentro de los límites de búsqueda.")
     else:
@@ -152,10 +172,12 @@ def main():
             print(f"{i}) cost=${r['cost']:.0f}  wait={r['wait_mean']:.3f}  servers={r['servers']}")
         save_results("a_min_cost", top_a)
 
+    # -------------------------
+    # (b) mejor bajo $2000 (minimiza espera, aunque no llegue a 3)
+    # -------------------------
     print("\n=== (b) Mejor configuración con presupuesto $2000 (Top 3) ===")
     top_b = top3_best_under_budget(cfg, budget=2000.0)
 
-    # Nota para el informe: si con $2000 no se logra <= 3 min, igual se reporta la mejor (menor espera)
     if top_b and min(r["wait_mean"] for r in top_b) > cfg.wait_threshold_minutes:
         print(f"\nNOTA: Con presupuesto $2000 NO se logra espera ≤ {cfg.wait_threshold_minutes} min.")
         print("Se reportan las configuraciones que MINIMIZAN la espera dentro del presupuesto.\n")
@@ -164,6 +186,34 @@ def main():
         print(f"{i}) cost=${r['cost']:.0f}  wait={r['wait_mean']:.3f}  servers={r['servers']}")
     save_results("b_budget_2000", top_b)
 
+    # -------------------------
+    # (c) mejor bajo $3000 (minimiza espera, aunque no llegue a 3)
+    # -------------------------
+    print("\n=== (c) Mejor configuración con presupuesto $3000 (Top 3) ===")
+    top_c = top3_best_under_budget(cfg, budget=3000.0)
+
+    if top_c and min(r["wait_mean"] for r in top_c) > cfg.wait_threshold_minutes:
+        print(f"\nNOTA: Con presupuesto $3000 NO se logra espera ≤ {cfg.wait_threshold_minutes} min.")
+        print("Se reportan las configuraciones que MINIMIZAN la espera dentro del presupuesto.\n")
+
+    for i, r in enumerate(top_c, 1):
+        print(f"{i}) cost=${r['cost']:.0f}  wait={r['wait_mean']:.3f}  servers={r['servers']}")
+    save_results("c_budget_3000", top_c)
+
+    # -------------------------
+    # (e) P(pollo)=50% manteniendo <= 3 (top 3 mínimo costo)
+    # -------------------------
+    print("\n=== (e) Ajuste si P(pollo)=50% manteniendo espera promedio ≤ 3 min (Top 3) ===")
+    cfg_e = with_pollo_50(cfg)
+
+    top_e = top3_min_cost_meeting_wait(cfg_e, wait_threshold=cfg_e.wait_threshold_minutes)
+
+    if not top_e:
+        print("No se encontró configuración que cumpla dentro de los límites de búsqueda.")
+    else:
+        for i, r in enumerate(top_e, 1):
+            print(f"{i}) cost=${r['cost']:.0f}  wait={r['wait_mean']:.3f}  servers={r['servers']}")
+        save_results("e_pollo_50", top_e)
 
 
 if __name__ == "__main__":

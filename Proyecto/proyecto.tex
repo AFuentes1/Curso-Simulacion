@@ -1,0 +1,241 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{Simulación de un Sistema de Colas en un Restaurante de Comida Rápida}
+\author{Anthony David Fuentes Calvo \\ Carlos Antonio Murcia Mora}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Resultados Gráficos}
+
+\subsection*{Caso A}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_1_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_1_cov.png}
+\caption{Caso A1: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_1_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_1_hist_rel.png}
+\caption{Caso A1: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{outputs/figures/a_1_sens_pollo.png}
+\caption{Caso A1: Análisis de sensibilidad (pollo)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_2_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_2_cov.png}
+\caption{Caso A2: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_2_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/a_2_hist_rel.png}
+\caption{Caso A2: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{outputs/figures/a_2_sens_pollo.png}
+\caption{Caso A2: Análisis de sensibilidad (pollo)}
+\end{figure}
+
+%------------------------------------------------
+
+\subsection*{Caso B}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_1_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_1_cov.png}
+\caption{Caso B1: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_1_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_1_hist_rel.png}
+\caption{Caso B1: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_2_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_2_cov.png}
+\caption{Caso B2: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_2_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_2_hist_rel.png}
+\caption{Caso B2: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_3_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_3_cov.png}
+\caption{Caso B3: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_3_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/b_3_hist_rel.png}
+\caption{Caso B3: Histogramas absoluto y relativo}
+\end{figure}
+
+%------------------------------------------------
+
+\subsection*{Caso C}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_1_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_1_cov.png}
+\caption{Caso C1: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_1_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_1_hist_rel.png}
+\caption{Caso C1: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_2_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_2_cov.png}
+\caption{Caso C2: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_2_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_2_hist_rel.png}
+\caption{Caso C2: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_3_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_3_cov.png}
+\caption{Caso C3: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_3_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/c_3_hist_rel.png}
+\caption{Caso C3: Histogramas absoluto y relativo}
+\end{figure}
+
+%------------------------------------------------
+
+\subsection*{Caso D}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/d_1_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/d_1_cov.png}
+\caption{Caso D1: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/d_1_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/d_1_hist_rel.png}
+\caption{Caso D1: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{outputs/figures/d_1_sens_pollo.png}
+\caption{Caso D1: Análisis de sensibilidad (pollo)}
+\end{figure}
+
+%------------------------------------------------
+
+\subsection*{Caso E}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_1_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_1_cov.png}
+\caption{Caso E1: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_1_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_1_hist_rel.png}
+\caption{Caso E1: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{outputs/figures/e_1_sens_pollo.png}
+\caption{Caso E1: Análisis de sensibilidad (pollo)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_2_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_2_cov.png}
+\caption{Caso E2: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_2_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_2_hist_rel.png}
+\caption{Caso E2: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{outputs/figures/e_2_sens_pollo.png}
+\caption{Caso E2: Análisis de sensibilidad (pollo)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_3_box.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_3_cov.png}
+\caption{Caso E3: Boxplot y Covarianza}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_3_hist_abs.png}
+\includegraphics[width=0.45\textwidth]{outputs/figures/e_3_hist_rel.png}
+\caption{Caso E3: Histogramas absoluto y relativo}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{outputs/figures/e_3_sens_pollo.png}
+\caption{Caso E3: Análisis de sensibilidad (pollo)}
+\end{figure}
+
+\end{document}

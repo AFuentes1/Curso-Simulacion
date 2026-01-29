@@ -1,0 +1,596 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.29)  29 JAN 2026 14:23
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./proyecto.tex
+(proyecto.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2025/12/11 v25.17 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
+\babel@savecnt=\count283
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2068.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2070.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2072.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2073.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2074.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2076.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2101.
+\U@D=\dimen149
+\l@unhyphenated=\language79
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def
+)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count284
+Package babel Info: Configuration files are deprecated, as
+(babel)             they can break document portability.
+(babel)             Reported on input line 4196.
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/es\ba
+bel-spanish.tex)
+Package babel Info: Importing font and identification data for spanish
+(babel)             from babel-es.ini. Reported on input line 4320.
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/babel-spanish\spanis
+h.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks17
+\es@quotdepth=\count285
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
+))
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) 
+on input line 3.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1)
+ on input line 3.
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
+y
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
+s.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
+def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count286
+\float@exts=\toks21
+\float@box=\box53
+\@float@everytoks=\toks22
+\@floatcapt=\box54
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
+y
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count287
+\Gm@cntv=\count288
+\c@Gm@tempcnt=\count289
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks23
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cf
+g))
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count290
+) (proyecto.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 8.
+)
+\openout1 = `proyecto.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Info: Redefining \. on input line 13.
+LaTeX Info: Redefining \% on input line 13.
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
+.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count291
+\scratchdimen=\dimen160
+\scratchbox=\box55
+\nofMPsegments=\count292
+\nofMParguments=\count293
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count294
+\MPscratchDim=\dimen161
+\MPnumerator=\count295
+\makeMPintoPDFobject=\count296
+\everyMPtoPDFconversion=\toks25
+)
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
+f-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\Cristina\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sy
+s.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 472.03123pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 652.70622pt, 71.13188pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=472.03123pt
+* \textheight=652.70622pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 15.
+<outputs/figures/a_1_box.png, id=1, 462.528pt x 346.896pt>
+File: outputs/figures/a_1_box.png Graphic file (type png)
+<use outputs/figures/a_1_box.png>
+Package pdftex.def Info: outputs/figures/a_1_box.png  used on input line 23.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/a_1_cov.png, id=3, 462.528pt x 346.896pt>
+File: outputs/figures/a_1_cov.png Graphic file (type png)
+<use outputs/figures/a_1_cov.png>
+Package pdftex.def Info: outputs/figures/a_1_cov.png  used on input line 24.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/a_1_hist_abs.png, id=4, 462.528pt x 346.896pt>
+File: outputs/figures/a_1_hist_abs.png Graphic file (type png)
+<use outputs/figures/a_1_hist_abs.png>
+Package pdftex.def Info: outputs/figures/a_1_hist_abs.png  used on input line 3
+0.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/a_1_hist_rel.png, id=5, 462.528pt x 346.896pt>
+File: outputs/figures/a_1_hist_rel.png Graphic file (type png)
+<use outputs/figures/a_1_hist_rel.png>
+Package pdftex.def Info: outputs/figures/a_1_hist_rel.png  used on input line 3
+1.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+[1
+
+{C:/Users/Cristina/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./outputs
+/figures/a_1_box.png> <./outputs/figures/a_1_cov.png>]
+<outputs/figures/a_1_sens_pollo.png, id=15, 462.528pt x 346.896pt>
+File: outputs/figures/a_1_sens_pollo.png Graphic file (type png)
+<use outputs/figures/a_1_sens_pollo.png>
+Package pdftex.def Info: outputs/figures/a_1_sens_pollo.png  used on input line
+ 37.
+(pdftex.def)             Requested size: 283.22162pt x 212.42668pt.
+<outputs/figures/a_2_box.png, id=16, 462.528pt x 346.896pt>
+File: outputs/figures/a_2_box.png Graphic file (type png)
+<use outputs/figures/a_2_box.png>
+Package pdftex.def Info: outputs/figures/a_2_box.png  used on input line 43.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/a_2_cov.png, id=17, 462.528pt x 346.896pt>
+File: outputs/figures/a_2_cov.png Graphic file (type png)
+<use outputs/figures/a_2_cov.png>
+Package pdftex.def Info: outputs/figures/a_2_cov.png  used on input line 44.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [2 <./outputs/figures/a_1_hist_abs.png> <./outputs/figures/a_1_hist_rel.png> <
+./outputs/figures/a_1_sens_pollo.png>]
+<outputs/figures/a_2_hist_abs.png, id=24, 462.528pt x 346.896pt>
+File: outputs/figures/a_2_hist_abs.png Graphic file (type png)
+<use outputs/figures/a_2_hist_abs.png>
+Package pdftex.def Info: outputs/figures/a_2_hist_abs.png  used on input line 5
+0.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/a_2_hist_rel.png, id=25, 462.528pt x 346.896pt>
+File: outputs/figures/a_2_hist_rel.png Graphic file (type png)
+<use outputs/figures/a_2_hist_rel.png>
+Package pdftex.def Info: outputs/figures/a_2_hist_rel.png  used on input line 5
+1.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/a_2_sens_pollo.png, id=26, 462.528pt x 346.896pt>
+File: outputs/figures/a_2_sens_pollo.png Graphic file (type png)
+<use outputs/figures/a_2_sens_pollo.png>
+Package pdftex.def Info: outputs/figures/a_2_sens_pollo.png  used on input line
+ 57.
+(pdftex.def)             Requested size: 283.22162pt x 212.42668pt.
+ [3 <./outputs/figures/a_2_box.png> <./outputs/figures/a_2_cov.png> <./outputs/
+figures/a_2_hist_abs.png> <./outputs/figures/a_2_hist_rel.png>]
+<outputs/figures/b_1_box.png, id=34, 462.528pt x 346.896pt>
+File: outputs/figures/b_1_box.png Graphic file (type png)
+<use outputs/figures/b_1_box.png>
+Package pdftex.def Info: outputs/figures/b_1_box.png  used on input line 67.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_1_cov.png, id=35, 462.528pt x 346.896pt>
+File: outputs/figures/b_1_cov.png Graphic file (type png)
+<use outputs/figures/b_1_cov.png>
+Package pdftex.def Info: outputs/figures/b_1_cov.png  used on input line 68.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_1_hist_abs.png, id=36, 462.528pt x 346.896pt>
+File: outputs/figures/b_1_hist_abs.png Graphic file (type png)
+<use outputs/figures/b_1_hist_abs.png>
+Package pdftex.def Info: outputs/figures/b_1_hist_abs.png  used on input line 7
+4.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_1_hist_rel.png, id=37, 462.528pt x 346.896pt>
+File: outputs/figures/b_1_hist_rel.png Graphic file (type png)
+<use outputs/figures/b_1_hist_rel.png>
+Package pdftex.def Info: outputs/figures/b_1_hist_rel.png  used on input line 7
+5.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+
+[4 <./outputs/figures/a_2_sens_pollo.png> <./outputs/figures/b_1_box.png> <./ou
+tputs/figures/b_1_cov.png>]
+<outputs/figures/b_2_box.png, id=44, 462.528pt x 346.896pt>
+File: outputs/figures/b_2_box.png Graphic file (type png)
+<use outputs/figures/b_2_box.png>
+Package pdftex.def Info: outputs/figures/b_2_box.png  used on input line 81.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_2_cov.png, id=45, 462.528pt x 346.896pt>
+File: outputs/figures/b_2_cov.png Graphic file (type png)
+<use outputs/figures/b_2_cov.png>
+Package pdftex.def Info: outputs/figures/b_2_cov.png  used on input line 82.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_2_hist_abs.png, id=46, 462.528pt x 346.896pt>
+File: outputs/figures/b_2_hist_abs.png Graphic file (type png)
+<use outputs/figures/b_2_hist_abs.png>
+Package pdftex.def Info: outputs/figures/b_2_hist_abs.png  used on input line 8
+8.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_2_hist_rel.png, id=47, 462.528pt x 346.896pt>
+File: outputs/figures/b_2_hist_rel.png Graphic file (type png)
+<use outputs/figures/b_2_hist_rel.png>
+Package pdftex.def Info: outputs/figures/b_2_hist_rel.png  used on input line 8
+9.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_3_box.png, id=48, 462.528pt x 346.896pt>
+File: outputs/figures/b_3_box.png Graphic file (type png)
+<use outputs/figures/b_3_box.png>
+Package pdftex.def Info: outputs/figures/b_3_box.png  used on input line 95.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_3_cov.png, id=49, 462.528pt x 346.896pt>
+File: outputs/figures/b_3_cov.png Graphic file (type png)
+<use outputs/figures/b_3_cov.png>
+Package pdftex.def Info: outputs/figures/b_3_cov.png  used on input line 96.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [5 <./outputs/figures/b_1_hist_abs.png> <./outputs/figures/b_1_hist_rel.png> <
+./outputs/figures/b_2_box.png> <./outputs/figures/b_2_cov.png> <./outputs/figur
+es/b_2_hist_abs.png> <./outputs/figures/b_2_hist_rel.png>]
+<outputs/figures/b_3_hist_abs.png, id=59, 462.528pt x 346.896pt>
+File: outputs/figures/b_3_hist_abs.png Graphic file (type png)
+<use outputs/figures/b_3_hist_abs.png>
+Package pdftex.def Info: outputs/figures/b_3_hist_abs.png  used on input line 1
+02.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/b_3_hist_rel.png, id=60, 462.528pt x 346.896pt>
+File: outputs/figures/b_3_hist_rel.png Graphic file (type png)
+<use outputs/figures/b_3_hist_rel.png>
+Package pdftex.def Info: outputs/figures/b_3_hist_rel.png  used on input line 1
+03.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_1_box.png, id=61, 462.528pt x 346.896pt>
+File: outputs/figures/c_1_box.png Graphic file (type png)
+<use outputs/figures/c_1_box.png>
+Package pdftex.def Info: outputs/figures/c_1_box.png  used on input line 113.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_1_cov.png, id=62, 462.528pt x 346.896pt>
+File: outputs/figures/c_1_cov.png Graphic file (type png)
+<use outputs/figures/c_1_cov.png>
+Package pdftex.def Info: outputs/figures/c_1_cov.png  used on input line 114.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_1_hist_abs.png, id=63, 462.528pt x 346.896pt>
+File: outputs/figures/c_1_hist_abs.png Graphic file (type png)
+<use outputs/figures/c_1_hist_abs.png>
+Package pdftex.def Info: outputs/figures/c_1_hist_abs.png  used on input line 1
+20.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_1_hist_rel.png, id=64, 462.528pt x 346.896pt>
+File: outputs/figures/c_1_hist_rel.png Graphic file (type png)
+<use outputs/figures/c_1_hist_rel.png>
+Package pdftex.def Info: outputs/figures/c_1_hist_rel.png  used on input line 1
+21.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [6 <./outputs/figures/b_3_box.png> <./outputs/figures/b_3_cov.png> <./outputs/
+figures/b_3_hist_abs.png> <./outputs/figures/b_3_hist_rel.png> <./outputs/figur
+es/c_1_box.png> <./outputs/figures/c_1_cov.png>]
+<outputs/figures/c_2_box.png, id=74, 462.528pt x 346.896pt>
+File: outputs/figures/c_2_box.png Graphic file (type png)
+<use outputs/figures/c_2_box.png>
+Package pdftex.def Info: outputs/figures/c_2_box.png  used on input line 127.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_2_cov.png, id=75, 462.528pt x 346.896pt>
+File: outputs/figures/c_2_cov.png Graphic file (type png)
+<use outputs/figures/c_2_cov.png>
+Package pdftex.def Info: outputs/figures/c_2_cov.png  used on input line 128.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_2_hist_abs.png, id=76, 462.528pt x 346.896pt>
+File: outputs/figures/c_2_hist_abs.png Graphic file (type png)
+<use outputs/figures/c_2_hist_abs.png>
+Package pdftex.def Info: outputs/figures/c_2_hist_abs.png  used on input line 1
+34.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_2_hist_rel.png, id=77, 462.528pt x 346.896pt>
+File: outputs/figures/c_2_hist_rel.png Graphic file (type png)
+<use outputs/figures/c_2_hist_rel.png>
+Package pdftex.def Info: outputs/figures/c_2_hist_rel.png  used on input line 1
+35.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_3_box.png, id=78, 462.528pt x 346.896pt>
+File: outputs/figures/c_3_box.png Graphic file (type png)
+<use outputs/figures/c_3_box.png>
+Package pdftex.def Info: outputs/figures/c_3_box.png  used on input line 141.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_3_cov.png, id=79, 462.528pt x 346.896pt>
+File: outputs/figures/c_3_cov.png Graphic file (type png)
+<use outputs/figures/c_3_cov.png>
+Package pdftex.def Info: outputs/figures/c_3_cov.png  used on input line 142.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [7 <./outputs/figures/c_1_hist_abs.png> <./outputs/figures/c_1_hist_rel.png> <
+./outputs/figures/c_2_box.png> <./outputs/figures/c_2_cov.png> <./outputs/figur
+es/c_2_hist_abs.png> <./outputs/figures/c_2_hist_rel.png>]
+<outputs/figures/c_3_hist_abs.png, id=90, 462.528pt x 346.896pt>
+File: outputs/figures/c_3_hist_abs.png Graphic file (type png)
+<use outputs/figures/c_3_hist_abs.png>
+Package pdftex.def Info: outputs/figures/c_3_hist_abs.png  used on input line 1
+48.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/c_3_hist_rel.png, id=91, 462.528pt x 346.896pt>
+File: outputs/figures/c_3_hist_rel.png Graphic file (type png)
+<use outputs/figures/c_3_hist_rel.png>
+Package pdftex.def Info: outputs/figures/c_3_hist_rel.png  used on input line 1
+49.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/d_1_box.png, id=92, 462.528pt x 346.896pt>
+File: outputs/figures/d_1_box.png Graphic file (type png)
+<use outputs/figures/d_1_box.png>
+Package pdftex.def Info: outputs/figures/d_1_box.png  used on input line 159.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/d_1_cov.png, id=93, 462.528pt x 346.896pt>
+File: outputs/figures/d_1_cov.png Graphic file (type png)
+<use outputs/figures/d_1_cov.png>
+Package pdftex.def Info: outputs/figures/d_1_cov.png  used on input line 160.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/d_1_hist_abs.png, id=94, 462.528pt x 346.896pt>
+File: outputs/figures/d_1_hist_abs.png Graphic file (type png)
+<use outputs/figures/d_1_hist_abs.png>
+Package pdftex.def Info: outputs/figures/d_1_hist_abs.png  used on input line 1
+66.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/d_1_hist_rel.png, id=95, 462.528pt x 346.896pt>
+File: outputs/figures/d_1_hist_rel.png Graphic file (type png)
+<use outputs/figures/d_1_hist_rel.png>
+Package pdftex.def Info: outputs/figures/d_1_hist_rel.png  used on input line 1
+67.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [8 <./outputs/figures/c_3_box.png> <./outputs/figures/c_3_cov.png> <./outputs/
+figures/c_3_hist_abs.png> <./outputs/figures/c_3_hist_rel.png> <./outputs/figur
+es/d_1_box.png> <./outputs/figures/d_1_cov.png>]
+<outputs/figures/d_1_sens_pollo.png, id=105, 462.528pt x 346.896pt>
+File: outputs/figures/d_1_sens_pollo.png Graphic file (type png)
+<use outputs/figures/d_1_sens_pollo.png>
+Package pdftex.def Info: outputs/figures/d_1_sens_pollo.png  used on input line
+ 173.
+(pdftex.def)             Requested size: 283.22162pt x 212.42668pt.
+<outputs/figures/e_1_box.png, id=106, 462.528pt x 346.896pt>
+File: outputs/figures/e_1_box.png Graphic file (type png)
+<use outputs/figures/e_1_box.png>
+Package pdftex.def Info: outputs/figures/e_1_box.png  used on input line 183.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_1_cov.png, id=107, 462.528pt x 346.896pt>
+File: outputs/figures/e_1_cov.png Graphic file (type png)
+<use outputs/figures/e_1_cov.png>
+Package pdftex.def Info: outputs/figures/e_1_cov.png  used on input line 184.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [9 <./outputs/figures/d_1_hist_abs.png> <./outputs/figures/d_1_hist_rel.png> <
+./outputs/figures/d_1_sens_pollo.png>]
+<outputs/figures/e_1_hist_abs.png, id=114, 462.528pt x 346.896pt>
+File: outputs/figures/e_1_hist_abs.png Graphic file (type png)
+<use outputs/figures/e_1_hist_abs.png>
+Package pdftex.def Info: outputs/figures/e_1_hist_abs.png  used on input line 1
+90.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_1_hist_rel.png, id=115, 462.528pt x 346.896pt>
+File: outputs/figures/e_1_hist_rel.png Graphic file (type png)
+<use outputs/figures/e_1_hist_rel.png>
+Package pdftex.def Info: outputs/figures/e_1_hist_rel.png  used on input line 1
+91.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_1_sens_pollo.png, id=116, 462.528pt x 346.896pt>
+File: outputs/figures/e_1_sens_pollo.png Graphic file (type png)
+<use outputs/figures/e_1_sens_pollo.png>
+Package pdftex.def Info: outputs/figures/e_1_sens_pollo.png  used on input line
+ 197.
+(pdftex.def)             Requested size: 283.22162pt x 212.42668pt.
+ [10 <./outputs/figures/e_1_box.png> <./outputs/figures/e_1_cov.png> <./outputs
+/figures/e_1_hist_abs.png> <./outputs/figures/e_1_hist_rel.png>]
+<outputs/figures/e_2_box.png, id=124, 462.528pt x 346.896pt>
+File: outputs/figures/e_2_box.png Graphic file (type png)
+<use outputs/figures/e_2_box.png>
+Package pdftex.def Info: outputs/figures/e_2_box.png  used on input line 203.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_2_cov.png, id=125, 462.528pt x 346.896pt>
+File: outputs/figures/e_2_cov.png Graphic file (type png)
+<use outputs/figures/e_2_cov.png>
+Package pdftex.def Info: outputs/figures/e_2_cov.png  used on input line 204.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_2_hist_abs.png, id=126, 462.528pt x 346.896pt>
+File: outputs/figures/e_2_hist_abs.png Graphic file (type png)
+<use outputs/figures/e_2_hist_abs.png>
+Package pdftex.def Info: outputs/figures/e_2_hist_abs.png  used on input line 2
+10.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_2_hist_rel.png, id=127, 462.528pt x 346.896pt>
+File: outputs/figures/e_2_hist_rel.png Graphic file (type png)
+<use outputs/figures/e_2_hist_rel.png>
+Package pdftex.def Info: outputs/figures/e_2_hist_rel.png  used on input line 2
+11.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [11 <./outputs/figures/e_1_sens_pollo.png> <./outputs/figures/e_2_box.png> <./
+outputs/figures/e_2_cov.png>]
+<outputs/figures/e_2_sens_pollo.png, id=134, 462.528pt x 346.896pt>
+File: outputs/figures/e_2_sens_pollo.png Graphic file (type png)
+<use outputs/figures/e_2_sens_pollo.png>
+Package pdftex.def Info: outputs/figures/e_2_sens_pollo.png  used on input line
+ 217.
+(pdftex.def)             Requested size: 283.22162pt x 212.42668pt.
+<outputs/figures/e_3_box.png, id=135, 462.528pt x 346.896pt>
+File: outputs/figures/e_3_box.png Graphic file (type png)
+<use outputs/figures/e_3_box.png>
+Package pdftex.def Info: outputs/figures/e_3_box.png  used on input line 223.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_3_cov.png, id=136, 462.528pt x 346.896pt>
+File: outputs/figures/e_3_cov.png Graphic file (type png)
+<use outputs/figures/e_3_cov.png>
+Package pdftex.def Info: outputs/figures/e_3_cov.png  used on input line 224.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+ [12 <./outputs/figures/e_2_hist_abs.png> <./outputs/figures/e_2_hist_rel.png> 
+<./outputs/figures/e_2_sens_pollo.png>]
+<outputs/figures/e_3_hist_abs.png, id=143, 462.528pt x 346.896pt>
+File: outputs/figures/e_3_hist_abs.png Graphic file (type png)
+<use outputs/figures/e_3_hist_abs.png>
+Package pdftex.def Info: outputs/figures/e_3_hist_abs.png  used on input line 2
+30.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_3_hist_rel.png, id=144, 462.528pt x 346.896pt>
+File: outputs/figures/e_3_hist_rel.png Graphic file (type png)
+<use outputs/figures/e_3_hist_rel.png>
+Package pdftex.def Info: outputs/figures/e_3_hist_rel.png  used on input line 2
+31.
+(pdftex.def)             Requested size: 212.41261pt x 159.30943pt.
+<outputs/figures/e_3_sens_pollo.png, id=145, 462.528pt x 346.896pt>
+File: outputs/figures/e_3_sens_pollo.png Graphic file (type png)
+<use outputs/figures/e_3_sens_pollo.png>
+Package pdftex.def Info: outputs/figures/e_3_sens_pollo.png  used on input line
+ 237.
+(pdftex.def)             Requested size: 283.22162pt x 212.42668pt.
+ [13 <./outputs/figures/e_3_box.png> <./outputs/figures/e_3_cov.png> <./outputs
+/figures/e_3_hist_abs.png> <./outputs/figures/e_3_hist_rel.png>]
+[14 <./outputs/figures/e_3_sens_pollo.png>] (proyecto.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 3809 strings out of 467871
+ 71610 string characters out of 5416924
+ 479124 words of memory out of 5000000
+ 32693 multiletter control sequences out of 15000+600000
+ 630144 words of font info for 48 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,6n,65p,205b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Cristina/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb><C:/Users/Cristina/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb><C:/Users/Cristina/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on proyecto.pdf (14 pages, 3532742 bytes).
+PDF statistics:
+ 172 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 271 words of extra memory for PDF output out of 10000 (max. 10000000)
+

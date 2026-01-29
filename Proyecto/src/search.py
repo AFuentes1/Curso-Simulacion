@@ -3,12 +3,12 @@ from __future__ import annotations
 
 from dataclasses import replace
 from pathlib import Path
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Any
 import itertools
 
 import pandas as pd
 
-from src.config import make_base_config, ModelConfig, SimulationSettings, ALL_STATIONS
+from src.config import make_base_config, ModelConfig, ALL_STATIONS, DistSpec, CAJA
 from src.simulation import run_replications
 from src.metrics import summarize_replications
 
@@ -62,7 +62,6 @@ def top3_min_cost_meeting_wait(cfg_full: ModelConfig, wait_threshold: float = 3.
         combos.sort(key=lambda s: config_cost(cfg_fast, s))
 
         for servers in combos:
-            # si ya encontramos 3, paramos
             if len(found) >= 3:
                 break
 
@@ -72,7 +71,6 @@ def top3_min_cost_meeting_wait(cfg_full: ModelConfig, wait_threshold: float = 3.
 
         max_each += 1
 
-    # si no encontró nada, devuelve vacío
     if not found:
         return []
 
@@ -93,20 +91,16 @@ def top3_best_under_budget(cfg_full: ModelConfig, budget: float) -> List[Dict[st
     """
     cfg_fast = _with_search_settings(cfg_full, n_customers=1200, warmup_customers=200, replications=6)
 
-    # límite razonable por estación (para no explotar combinaciones)
     max_each = 12
     combos = generate_combos(max_each)
 
-    # filtrar por presupuesto (rápido)
     combos = [s for s in combos if config_cost(cfg_fast, s) <= budget]
 
     scored: List[Dict[str, Any]] = []
     for servers in combos:
         ev = evaluate(cfg_fast, servers)
         scored.append(ev)
-        
 
-    # escoger mejores 10 por espera y reevaluar full para top3 final
     scored.sort(key=lambda x: (x["wait_mean"], x["cost"]))
     shortlist = scored[:10]
 
@@ -139,11 +133,8 @@ def save_results(tag: str, rows: List[Dict[str, Any]]) -> None:
     df = pd.DataFrame(flat_rows)
     df.to_csv(out_dir / f"search_{tag}.csv", index=False, encoding="utf-8-sig")
 
+
 def with_pollo_50(cfg: ModelConfig) -> ModelConfig:
-    # Ajuste simple para que P(pollo)=0.50:
-    # antes: pollo = pollo_y_refresco(0.25) + combo(0.10) = 0.35
-    # ahora: pollo_y_refresco=0.40 y dejamos combo=0.10 => 0.50
-    # para mantener suma=1: bajamos frito_y_refresco de 0.35 a 0.20 (solo_refresco queda 0.30)
     ot = {o.name: o for o in cfg.order_types}
 
     new_order_types = [
@@ -154,6 +145,35 @@ def with_pollo_50(cfg: ModelConfig) -> ModelConfig:
     ]
 
     return replace(cfg, order_types=new_order_types)
+
+
+# -------------------------
+# (d) movido aquí: comparar caja base vs caja media=2min
+# -------------------------
+def compare_cashier(cfg: ModelConfig, servers: Dict[str, int], cashier_mean_min: float = 2.0) -> Dict[str, float]:
+    # Escenario base
+    results_base = run_replications(cfg, servers)
+    summ_base = summarize_replications(results_base)
+    wait_base = summ_base["queue_wait_total"]["mean"]
+
+    # Nuevo config con caja = cashier_mean_min
+    new_services = dict(cfg.service_dists)
+    new_services[CAJA] = DistSpec(
+        name="expon",
+        scale=float(cashier_mean_min),
+        units="min"
+    )
+    cfg_fast = replace(cfg, service_dists=new_services)
+
+    results_fast = run_replications(cfg_fast, servers)
+    summ_fast = summarize_replications(results_fast)
+    wait_fast = summ_fast["queue_wait_total"]["mean"]
+
+    return {
+        "wait_base": wait_base,
+        "wait_fast": wait_fast,
+        "delta_wait": wait_base - wait_fast
+    }
 
 
 def main():
@@ -173,7 +193,7 @@ def main():
         save_results("a_min_cost", top_a)
 
     # -------------------------
-    # (b) mejor bajo $2000 (minimiza espera, aunque no llegue a 3)
+    # (b) mejor bajo $2000
     # -------------------------
     print("\n=== (b) Mejor configuración con presupuesto $2000 (Top 3) ===")
     top_b = top3_best_under_budget(cfg, budget=2000.0)
@@ -187,7 +207,7 @@ def main():
     save_results("b_budget_2000", top_b)
 
     # -------------------------
-    # (c) mejor bajo $3000 (minimiza espera, aunque no llegue a 3)
+    # (c) mejor bajo $3000
     # -------------------------
     print("\n=== (c) Mejor configuración con presupuesto $3000 (Top 3) ===")
     top_c = top3_best_under_budget(cfg, budget=3000.0)
@@ -201,7 +221,19 @@ def main():
     save_results("c_budget_3000", top_c)
 
     # -------------------------
-    # (e) P(pollo)=50% manteniendo <= 3 (top 3 mínimo costo)
+    # (d) caja con media 2 min (MISMA dotación base)
+    # -------------------------
+    servers_d = {"caja": 4, "freidora": 6, "refrescos": 5, "pollo": 5}
+    cmp = compare_cashier(cfg, servers_d, cashier_mean_min=2.0)
+
+    print("\n=== (d) Caja con media = 2 min (misma dotación de servidores) ===")
+    print("Servidores:", servers_d)
+    print("Espera base:", cmp["wait_base"])
+    print("Espera con caja = 2 min:", cmp["wait_fast"])
+    print("Reducción:", cmp["delta_wait"])
+
+    # -------------------------
+    # (e) P(pollo)=50% manteniendo <= 3
     # -------------------------
     print("\n=== (e) Ajuste si P(pollo)=50% manteniendo espera promedio ≤ 3 min (Top 3) ===")
     cfg_e = with_pollo_50(cfg)

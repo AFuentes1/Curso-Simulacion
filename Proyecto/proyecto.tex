@@ -48,6 +48,46 @@ Los tipos de pedido considerados fueron:
 La simulación se ejecutó con 2000 clientes, 200 de calentamiento, 30 réplicas y semilla 12345. El objetivo del sistema fue mantener la espera promedio en cola por debajo de 3 minutos.
 
 %------------------------------------------------
+\section{Validación Estadística de los Generadores}
+
+Los generadores de números aleatorios utilizados en la simulación fueron validados mediante pruebas de bondad de ajuste. Las distribuciones continuas fueron evaluadas usando la prueba de Kolmogorov--Smirnov (KS), mientras que la distribución discreta fue evaluada mediante la prueba de ji-cuadrado ($\chi^2$). En todos los casos se utilizó un nivel de significancia $\alpha = 0.05$.
+
+\subsection*{Prueba KS -- Exponencial}
+
+\begin{itemize}
+\item Estadístico: $D = 0.0079$
+\item p-value: $0.1633$
+\end{itemize}
+
+\textbf{Conclusión:} Como $p$-value $> \alpha$, no se rechaza la hipótesis nula. Los tiempos generados son compatibles con una distribución exponencial con la media especificada, por lo que el generador es válido para modelar llegadas y tiempos de servicio.
+
+\subsection*{Prueba KS -- Normal}
+
+\begin{itemize}
+\item Estadístico: $D = 0.00435$
+\item p-value: $0.8412$
+\end{itemize}
+
+\textbf{Conclusión:} No se rechaza la hipótesis nula con amplia holgura. La muestra es altamente consistente con una distribución normal con los parámetros dados, sin evidencia de sesgo o truncamiento.
+
+\subsection*{Prueba $\chi^2$ -- Binomial}
+
+\begin{itemize}
+\item Estadístico: $\chi^2 = 8.64$
+\item p-value: $0.1244$
+\end{itemize}
+
+\textbf{Conclusión:} Dado que $p$-value $> \alpha$, no se rechaza la hipótesis nula. Las frecuencias observadas coinciden con una distribución binomial dentro de la variabilidad esperada, validando el modelo discreto de cantidad de órdenes.
+
+\subsection*{Conclusión Global}
+
+Se concluye que los generadores de números aleatorios utilizados en la simulación cumplen con las distribuciones teóricas especificadas. En todos los casos los p-values fueron mayores que $\alpha = 0.05$, por lo que no se rechazó la hipótesis nula de ajuste. Esto valida formalmente la base estocástica del modelo.
+
+\subsection*{Nota Técnica}
+
+No se aplicaron pruebas de bondad de ajuste sobre los tiempos en sistema ni tiempos en cola, ya que estas variables no son independientes ni siguen las distribuciones originales, sino que dependen de la dinámica del sistema de colas, congestión y paralelismo entre estaciones.
+
+%------------------------------------------------
 \section{Resultados del Caso Base}
 
 El tiempo promedio en el sistema fue:

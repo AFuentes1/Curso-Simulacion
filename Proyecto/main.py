@@ -67,20 +67,16 @@ def main():
 
     servers = {"caja": 4, "freidora": 6, "refrescos": 5, "pollo": 5}
 
-    """
     results = run_replications(cfg, servers)
     print("Tiempo en sistema:", results[0].mean_time_in_system)
     print("POR ESTACIÓN:", results[0].per_station)
     print("Espera total en colas:", results[0].mean_queue_wait_total)
-    """
 
-    """
     best_2c = solve_2c(cfg)
     print("\n=== RESULTADO 2(c) ===")
     print("Servidores:", best_2c["servers"])
     print("Costo total:", best_2c["cost"])
     print("Espera promedio:", best_2c["wait"])
-    """
 
 
 if __name__ == "__main__":

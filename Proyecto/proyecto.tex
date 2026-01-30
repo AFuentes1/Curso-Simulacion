@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{geometry}
+\usepackage{amsmath}
 \geometry{margin=2.5cm}
 
 \title{Simulación de un Sistema de Colas en un Restaurante de Comida Rápida}
@@ -14,6 +15,89 @@
 
 \maketitle
 
+%------------------------------------------------
+\section{Configuración del Modelo}
+
+Los costos por servidor utilizados en la simulación fueron:
+
+\begin{itemize}
+\item Freidora: \$200
+\item Caja: \$500
+\item Refrescos: \$750
+\item Pollo: \$100
+\end{itemize}
+
+La distribución de llegadas se modeló como una distribución exponencial con media de 1 minuto. Las distribuciones de servicio fueron:
+
+\begin{itemize}
+\item Caja: Exponencial (media = 3 min)
+\item Freidora: Exponencial (media = 2.5 min)
+\item Refrescos: Exponencial (media = 1.5 min)
+\item Pollo: Exponencial (media = 4 min)
+\end{itemize}
+
+Los tipos de pedido considerados fueron:
+
+\begin{itemize}
+\item Solo refresco (30\%)
+\item Frito y refresco (35\%)
+\item Pollo y refresco (25\%)
+\item Combo completo (10\%)
+\end{itemize}
+
+La simulación se ejecutó con 2000 clientes, 200 de calentamiento, 30 réplicas y semilla 12345. El objetivo del sistema fue mantener la espera promedio en cola por debajo de 3 minutos.
+
+%------------------------------------------------
+\section{Resultados del Caso Base}
+
+El tiempo promedio en el sistema fue:
+\[
+W = 11.70 \text{ minutos}
+\]
+
+La espera total promedio en colas fue:
+\[
+W_q = 2.76 \text{ minutos}
+\]
+
+Por estación:
+\begin{itemize}
+\item Caja: 1.36 min
+\item Freidora: 0.05 min
+\item Refrescos: 0.96 min
+\item Pollo: 0.72 min
+\end{itemize}
+
+Estos resultados cumplen con el objetivo del sistema, manteniendo tiempos de espera aceptables para los clientes.
+
+%------------------------------------------------
+\section{Análisis del Escenario 2(c): Presupuesto \$3000}
+
+La configuración evaluada fue:
+\[
+\{\text{Caja}=2,\ \text{Freidora}=1,\ \text{Refrescos}=2,\ \text{Pollo}=3\}
+\]
+
+con un costo total de \$3000. Sin embargo, esta configuración produjo una espera promedio de aproximadamente:
+\[
+W_q \approx 1004.7 \text{ minutos}
+\]
+
+lo cual indica inestabilidad del sistema. En particular, la estación de freidora presentó una utilización mayor que 1, generando crecimiento ilimitado de la cola.
+
+Una configuración estable alternativa dentro del mismo presupuesto es:
+\[
+\{\text{Caja}=2,\ \text{Freidora}=2,\ \text{Refrescos}=2,\ \text{Pollo}=2\}
+\]
+
+con costo total:
+\[
+2(500) + 2(200) + 2(750) + 2(100) = \$3000
+\]
+
+Esta distribución mantiene todas las estaciones con utilización menor que 1 y reduce significativamente el tiempo de espera promedio.
+
+%------------------------------------------------
 \section*{Resultados Gráficos}
 
 \subsection*{Caso A}
@@ -59,7 +143,6 @@
 \end{figure}
 
 %------------------------------------------------
-
 \subsection*{Caso B}
 
 \begin{figure}[H]
@@ -105,7 +188,6 @@
 \end{figure}
 
 %------------------------------------------------
-
 \subsection*{Caso C}
 
 \begin{figure}[H]
@@ -151,7 +233,6 @@
 \end{figure}
 
 %------------------------------------------------
-
 \subsection*{Caso D}
 
 \begin{figure}[H]
@@ -175,7 +256,6 @@
 \end{figure}
 
 %------------------------------------------------
-
 \subsection*{Caso E}
 
 \begin{figure}[H]
